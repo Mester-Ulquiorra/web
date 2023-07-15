@@ -33,7 +33,7 @@ jobs:
           # FTP Server.
           server: mester.info
           # FTP User.
-          user: www-data
+          username: www-data
           # FTP Password.
           key: ${{ secrets.WWWDATAKEY }}
           uploads:
