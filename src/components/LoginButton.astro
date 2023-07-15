@@ -1,0 +1,33 @@
+---
+import Icons from "./Icons.astro";
+---
+
+<form action=`${Astro.site}api/auth`>
+    <button class="login" type="submit"
+        >Login to <Icons name="discord" /></button
+    >
+</form>
+
+<style>
+    .login {
+        all: unset;
+        cursor: pointer;
+        background-color: var(--primary);
+        color: var(--text);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        display: inline-flex;
+        gap: 0.5rem;
+        margin: 0.5rem;
+        font-weight: bold;
+        transition: all 0.25s;
+
+        &:hover {
+            background-color: var(--secondary);
+        }
+
+        &::selection {
+            background-color: var(--secondary);
+        }
+    }
+</style>

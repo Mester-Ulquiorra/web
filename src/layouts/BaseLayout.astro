@@ -1,5 +1,7 @@
 ---
+import Footer from "../components/Footer.astro";
 import Head from "../components/Head.astro";
+import Header from "../components/Header.astro";
 
 import "../styles/style.css";
 ---
@@ -10,15 +12,18 @@ import "../styles/style.css";
         <Head />
     </head>
     <body>
+        <Header />
         <slot />
+        <Footer />
         <style>
             body {
                 display: grid;
-                grid-auto-rows: auto 1fr auto;
+                grid-template-rows: auto 1fr auto;
                 min-height: 100vh;
                 min-height: -webkit-fill-available;
                 background-color: var(--bg);
                 color: var(--text);
+                padding: 1rem;
             }
 
             html {
