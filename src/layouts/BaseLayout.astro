@@ -1,6 +1,5 @@
 ---
 import Head from "../components/Head.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
 
 import "../styles/global.css";
 ---
@@ -11,9 +10,6 @@ import "../styles/global.css";
         <Head />
     </head>
     <body>
-        <header>
-            <ThemeToggle />
-        </header>
         <slot />
         <style>
             body {
@@ -27,12 +23,6 @@ import "../styles/global.css";
 
             html {
                 height: -webkit-fill-available;
-            }
-
-            header {
-                position: absolute;
-                justify-self: end;
-                margin: 1rem;
             }
         </style>
     </body>

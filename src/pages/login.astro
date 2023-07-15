@@ -32,8 +32,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .login {
         all: unset;
         cursor: pointer;
-        background: var(--gradient);
-        color: var(--bg);
+        background-color: var(--primary);
+        color: var(--text);
         padding: 0.5rem;
         border-radius: 0.5rem;
         display: inline-flex;
@@ -41,9 +41,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         margin: 0.5rem;
         font-size: 1.25rem;
         font-weight: bold;
+        transition: all 0.25s;
 
         &:hover {
-            background: var(--reverse-gradient);
+            background-color: var(--secondary);
         }
     }
 </style>

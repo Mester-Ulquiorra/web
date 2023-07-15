@@ -1,4 +1,11 @@
-@import url("./colors.css");
+/* Colors */
+:root {
+    --primary: #087cf4;
+    --secondary: #10d0e9;
+    --bg: #111;
+    --text: #eee;
+    --variant: #222;
+}
 
 *,
 *::after,
