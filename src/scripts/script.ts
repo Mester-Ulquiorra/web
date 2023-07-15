@@ -1,6 +1,7 @@
 import { getUserData } from "./userData"
 
-const apiUrl = new URL(`https://ucp.mester.info/api/user?test=true`)
+const url = process.env.NODE_ENV === "production" ? `https://ucp.mester.info/api/user` : `https://ucp.mester.info/api/user?test=true`
+const apiUrl = new URL(url)
 const userData = await getUserData(apiUrl)
 
 if (userData) {
