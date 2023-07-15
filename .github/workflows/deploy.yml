@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -26,3 +26,17 @@ jobs:
 
       - name: Build app
         run: npm run build
+        
+      - name: Deploy app
+        uses: modern-dev/ftp-mirror@v2
+        with:
+          # FTP Server.
+          server: 51.68.173.95
+          # FTP User.
+          user: www-data
+          # FTP Password.
+          password: ${{ secrets.WWWDATAPASS }}
+          # Local directory.
+          local_dir: ./dist/
+          # Remote directory.
+          remote_dir: /var/www/ulquiorra-ucp
