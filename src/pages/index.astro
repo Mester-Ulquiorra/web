@@ -32,12 +32,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 		async check() {
 			const check = await fetch(`https://ucp.mester.info/api/user`);
-
-			if (check.ok) {
-				this.loggedIn = true;
-			} else {
-				this.loggedIn = false;
-			}
+			this.loggedIn = check.ok;
 		}
 	}
 
