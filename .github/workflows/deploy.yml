@@ -38,3 +38,4 @@ jobs:
           privateKey: ${{ secrets.WWWDATAKEY }}
           localDir: ./dist/
           remoteDir: /home/web/ulquiorra-ucp/
+          removeExtraFilesOnServer: true
