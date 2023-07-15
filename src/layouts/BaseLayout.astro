@@ -1,0 +1,39 @@
+---
+import Head from "../components/Head.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+
+import "../styles/global.css";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <Head />
+    </head>
+    <body>
+        <header>
+            <ThemeToggle />
+        </header>
+        <slot />
+        <style>
+            body {
+                display: grid;
+                place-content: center;
+                min-height: 100vh;
+                min-height: -webkit-fill-available;
+                background-color: var(--bg);
+                color: var(--text);
+            }
+
+            html {
+                height: -webkit-fill-available;
+            }
+
+            header {
+                position: absolute;
+                justify-self: end;
+                margin: 1rem;
+            }
+        </style>
+    </body>
+</html>

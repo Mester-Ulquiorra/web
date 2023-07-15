@@ -1,0 +1,66 @@
+---
+import Icons from "./Icons.astro";
+---
+
+<button title="Theme toggle" type="button" id="theme-toggle">
+    <Icons name="sun" />
+    <Icons name="moon" />
+</button>
+
+<style>
+    button {
+        display: inline-flex;
+        text-decoration: none;
+        padding: 0.5rem;
+        color: var(--text);
+        background: transparent;
+        border: none;
+        border-radius: 0.5rem;
+
+        &:hover {
+            background: var(--gradient);
+            color: var(--bg);
+        }
+    }
+</style>
+
+<script>
+    const theme = {
+        value: "light",
+
+        init() {
+            // Check if theme is stored in sessionStorage, else use prefers-color-scheme
+            this.value =
+                sessionStorage.getItem("theme") ??
+                (window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light");
+
+            // Set the body class to be the current theme value
+            document.body.className = this.value;
+        },
+
+        toggle() {
+            // Switch between light and dark
+            if (this.value === "dark") {
+                this.value = "light";
+            } else {
+                this.value = "dark";
+            }
+
+            // Update value in sessionStorage
+            sessionStorage.setItem("theme", this.value);
+
+            // Set body class to be updated theme value
+            document.body.className = this.value;
+        },
+    };
+
+    // Initialise theme
+    theme.init();
+
+    // Attach event listener to theme toggle
+    document
+        .querySelector("#theme-toggle")
+        ?.addEventListener("click", () => theme.toggle());
+</script>

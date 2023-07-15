@@ -1,0 +1,49 @@
+---
+import Icons from "../components/Icons.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <main>
+        <h1 class="title">Ulquiorra</h1>
+        <h2 class="desc">A GUI for Mester's Discord bot</h2>
+        <form action=`${Astro.site}api/auth`>
+            <button class="login" type="submit"
+                >Login to <Icons name="discord" /></button
+            >
+        </form>
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        display: grid;
+        place-self: center;
+        place-content: center;
+        place-items: center;
+        text-align: center;
+    }
+
+    .title {
+        padding: 1rem;
+    }
+
+    .desc {
+        padding: 0.5rem;
+    }
+
+    .login {
+        all: unset;
+        cursor: pointer;
+        background: var(--gradient);
+        color: var(--bg);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        display: inline-flex;
+        gap: 0.5rem;
+
+        &:hover {
+            background: var(--reverse-gradient);
+        }
+    }
+</style>
