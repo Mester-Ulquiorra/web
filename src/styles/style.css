@@ -27,3 +27,8 @@ main {
 button {
     cursor: pointer;
 }
+
+::selection {
+    background-color: var(--primary);
+    color: var(--text);
+}
