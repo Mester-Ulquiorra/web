@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <main>
+        <h1>Error 404</h1>
+        <h2>Page not found</h2>
+        <a href="/">Go home</a>
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        text-align: center;
+
+        & * {
+            padding: 1rem;
+        }
+    }
+
+    a {
+        all: unset;
+        cursor: pointer;
+        background: var(--gradient);
+        color: var(--text);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+
+        &:hover {
+            background: var(--reverse-gradient);
+        }
+    }
+</style>
