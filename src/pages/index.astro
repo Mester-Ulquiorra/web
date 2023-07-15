@@ -22,27 +22,4 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 </style>
 
-<script>
-	class auth {
-		loggedIn: boolean;
-
-		constructor() {
-			this.loggedIn = false;
-		}
-
-		async check() {
-			const check = await fetch(`https://ucp.mester.info/api/user`);
-			this.loggedIn = check.ok;
-		}
-	}
-
-	const user = new auth();
-	await user.check();
-
-	if (!user.loggedIn) {
-		location.replace("/login");
-	} else {
-		(document.querySelector("#ulquiorra") as HTMLElement).style.display =
-			"grid";
-	}
-</script>
+<script src="../scripts/script.ts"></script>
