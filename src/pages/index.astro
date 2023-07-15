@@ -27,22 +27,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		loggedIn: boolean;
 
 		constructor() {
-			this.loggedIn = JSON.parse(
-				sessionStorage.getItem("loggedIn") ?? "false"
-			);
+			this.loggedIn = false;
 		}
 
 		async check() {
-			if (!this.loggedIn) {
-				const check = await fetch(`https://ucp.mester.info/api/user`);
+			const check = await fetch(`https://ucp.mester.info/api/user`);
 
-				if (check.ok) {
-					this.loggedIn = true;
-				} else {
-					this.loggedIn = false;
-				}
-
-				sessionStorage.setItem("loggedIn", this.loggedIn.toString());
+			if (check.ok) {
+				this.loggedIn = true;
+			} else {
+				this.loggedIn = false;
 			}
 		}
 	}
