@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -26,3 +26,15 @@ jobs:
 
       - name: Build app
         run: npm run build
+        
+      - name: Deploy app
+        uses: wangyucode/sftp-upload-action@v2.0.2
+        with:
+          # FTP Server.
+          host: mester.info
+          # FTP User.
+          username: web
+          # FTP Password.
+          privateKey: ${{ secrets.WWWDATAKEY }}
+          localDir: ./dist/
+          remoteDir: /home/web/ulquiorra-ucp/
