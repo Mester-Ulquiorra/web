@@ -22,15 +22,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     a {
         all: unset;
         cursor: pointer;
-        background: var(--gradient);
+        background: var(--primary);
         color: var(--text);
         padding: 0.5rem;
         border-radius: 0.5rem;
         font-size: 1.25rem;
         font-weight: bold;
+        transition: all 0.25s;
 
         &:hover {
-            background: var(--reverse-gradient);
+            background: var(--secondary);
         }
     }
 </style>
