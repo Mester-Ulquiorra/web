@@ -2,14 +2,12 @@
 import Icons from "./Icons.astro";
 ---
 
-<form action=`${Astro.site}api/auth`>
-    <button class="login" type="submit"
-        >Login to <Icons name="discord" /></button
-    >
+<form action=`${Astro.site}api/auth` id="login">
+    <button type="submit">Login to <Icons name="discord" /></button>
 </form>
 
 <style>
-    .login {
+    button {
         all: unset;
         cursor: pointer;
         background-color: var(--primary);

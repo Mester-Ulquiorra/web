@@ -5,6 +5,10 @@ import LoginButton from "./LoginButton.astro";
 <header>
     <h2>Ulquiorra</h2>
     <LoginButton />
+    <div id="user-info">
+        <img id="avatar" src="" alt="" />
+        <p id="username"></p>
+    </div>
 </header>
 
 <style>
@@ -12,5 +16,18 @@ import LoginButton from "./LoginButton.astro";
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    div {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    img {
+        height: 1.25rem;
+    }
+
+    p {
     }
 </style>
