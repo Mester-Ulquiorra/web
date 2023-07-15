@@ -28,15 +28,15 @@ jobs:
         run: npm run build
         
       - name: Deploy app
-        uses: modern-dev/ftp-mirror@v2
+        uses: Dylan700/sftp-upload-action@v1.2.0
         with:
           # FTP Server.
-          server: 51.68.173.95
+          server: mester.info
           # FTP User.
           user: www-data
           # FTP Password.
-          password: ${{ secrets.WWWDATAPASS }}
+          key: ${{ secrets.WWWDATAKEY }}
           # Local directory.
           local_dir: ./dist/
           # Remote directory.
-          remote_dir: /var/www/ulquiorra-ucp
+          remote_dir: /var/www/ulquiorra-ucp/
