@@ -36,7 +36,5 @@ jobs:
           user: www-data
           # FTP Password.
           key: ${{ secrets.WWWDATAKEY }}
-          # Local directory.
-          local_dir: ./dist/
-          # Remote directory.
-          remote_dir: /var/www/ulquiorra-ucp/
+          uploads:
+            ./dist/ => /var/www/ulquiorra-ucp/
