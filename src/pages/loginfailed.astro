@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <main>
+        <h1>Login Failed!</h1>
+        <a href="/login">Please try again</a>
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        display: grid;
+        place-items: center;
+        gap: 1rem;
+    }
+
+    a {
+        all: unset;
+        cursor: pointer;
+        background: var(--gradient);
+        color: var(--bg);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: bold;
+
+        &:hover {
+            background: var(--reverse-gradient);
+        }
+    }
+</style>
