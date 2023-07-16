@@ -17,15 +17,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
 
     a {
-        all: unset;
-        cursor: pointer;
         background: var(--primary);
         color: var(--bg);
         padding: 0.5rem;
         border-radius: 0.5rem;
         font-size: 1.25rem;
         font-weight: bold;
-        transition: all 0.25s;
+        transition: var(--transition);
 
         &:hover {
             background: var(--secondary);

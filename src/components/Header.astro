@@ -1,14 +1,17 @@
 ---
 import LoginButton from "./LoginButton.astro";
+import Icons from "./Icons.astro";
 ---
 
 <header>
-    <h2>Ulquiorra</h2>
+    <a href="/"><Icons name="home" /></a>
     <LoginButton />
     <div id="user-info">
         <img id="avatar" src="" alt="" />
         <p id="username"></p>
-        <button type="submit">Log out</button>
+        <form action=`${Astro.site}api/user/logout`>
+            <button type="submit">Log out</button>
+        </form>
     </div>
 </header>
 
@@ -43,17 +46,15 @@ import LoginButton from "./LoginButton.astro";
     }
 
     button {
-        all: unset;
         visibility: hidden;
         opacity: 0;
-        cursor: pointer;
         background-color: transparent;
         color: var(--text);
         padding: 0.5rem;
         border-radius: 0.5rem;
         gap: 0.5rem;
         font-weight: bold;
-        transition: all 0.25s;
+        transition: var(--transition);
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -64,6 +65,17 @@ import LoginButton from "./LoginButton.astro";
 
         &::selection {
             background-color: var(--secondary);
+        }
+    }
+
+    a {
+        background-color: transparent;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: var(--transition);
+
+        &:hover {
+            background-color: var(--primary);
         }
     }
 </style>

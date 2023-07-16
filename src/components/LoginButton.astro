@@ -8,8 +8,6 @@ import Icons from "./Icons.astro";
 
 <style>
     button {
-        all: unset;
-        cursor: pointer;
         background-color: var(--primary);
         color: var(--text);
         padding: 0.5rem;
@@ -17,7 +15,7 @@ import Icons from "./Icons.astro";
         display: inline-flex;
         gap: 0.5rem;
         font-weight: bold;
-        transition: all 0.25s;
+        transition: var(--transition);
 
         &:hover {
             background-color: var(--secondary);
