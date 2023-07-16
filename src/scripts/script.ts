@@ -24,4 +24,8 @@ if (userData) {
     if (guilds && userGuilds) {
         guilds.innerHTML = userGuilds.map(guild => `<div class="guild"><img class="guild-img" src="https://media.discordapp.net/icons/${guild.id}/${guild.icon}.png" /><p class="guild-name">${guild.name}</p></div>`).join("")
     }
+
+    const lastUpdated = new Date(userData.lastFetch).toDateString()
+    const lastUpdatedElement = document.querySelector("#last-updated") as HTMLElement
+    lastUpdatedElement.innerHTML = `Last updated: ${lastUpdated}`
 }
