@@ -8,6 +8,7 @@ import LoginButton from "./LoginButton.astro";
     <div id="user-info">
         <img id="avatar" src="" alt="" />
         <p id="username"></p>
+        <button type="submit">Log out</button>
     </div>
 </header>
 
@@ -20,17 +21,49 @@ import LoginButton from "./LoginButton.astro";
 
     div {
         display: none;
-        align-items: center;
         gap: 0.5rem;
+        position: relative;
+        cursor: pointer;
+
+        &:hover button {
+            visibility: visible;
+            opacity: 1;
+            transform: translate(-50%, 75%);
+        }
     }
 
     img {
-        height: 1.5rem;
+        height: 1.75rem;
         border-radius: 100vmax;
     }
 
     p {
         font-size: 1.25rem;
         font-weight: bold;
+    }
+
+    button {
+        all: unset;
+        visibility: hidden;
+        opacity: 0;
+        cursor: pointer;
+        background-color: transparent;
+        color: var(--text);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        gap: 0.5rem;
+        font-weight: bold;
+        transition: all 0.25s;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &:hover {
+            background-color: var(--primary);
+        }
+
+        &::selection {
+            background-color: var(--secondary);
+        }
     }
 </style>
