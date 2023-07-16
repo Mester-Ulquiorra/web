@@ -16,7 +16,6 @@ import "../styles/style.css";
         <slot />
         <h1 id="placeholder">Please log in to continue</h1>
         <Footer />
-        <div id="toast">Copied to clipboard</div>
         <style>
             body {
                 display: grid;
@@ -29,20 +28,6 @@ import "../styles/style.css";
 
             html {
                 height: -webkit-fill-available;
-            }
-
-            div {
-                position: absolute;
-                left: 50%;
-                bottom: 1rem;
-                background-color: var(--primary);
-                padding: 0.5rem;
-                border-radius: 0.5rem;
-                transform: translateX(-50%);
-                z-index: 2;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.25s;
             }
 
             #placeholder {

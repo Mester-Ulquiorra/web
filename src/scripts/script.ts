@@ -1,6 +1,6 @@
 import { getUserData } from "./userData"
 
-const url = process.env.NODE_ENV === "production" ? `https://ucp.mester.info/api/user` : `https://ucp.mester.info/api/user?test=true`
+const url = `https://ucp.mester.info/api/user${process.env.NODE_ENV === "development" ? "?test=true" : ""}`
 const apiUrl = new URL(url)
 const userData = await getUserData(apiUrl)
 
@@ -28,20 +28,34 @@ if (userData) {
     const lastUpdatedElement = document.querySelector("#last-updated") as HTMLElement
     lastUpdatedElement.innerHTML = `Last updated: ${lastUpdated}`
 
-    // Click to copy link to server
-    const serverLink = document.querySelector("#server-link") as HTMLButtonElement
-    serverLink.addEventListener("click", () => {
-        // Copy server link to clipboard
-        navigator.clipboard.writeText("https://discord.gg/MfmUFk5kbe")
+    createToast("#server-link", "https://discord.gg/MfmUFk5kbe", "Copied server link to keyboard")
+}
 
-        // Show "Copied to clipboard" toast for 1s
-        const toast = document.querySelector("#toast") as HTMLDivElement
-        toast.style.visibility = "visible"
-        toast.style.opacity = "1"
+export function createToast(srcElem: string, copyText: string, message: string) {
+    const srcElems = document.querySelectorAll(srcElem);
+    srcElems.forEach((elem) => {
+        elem.addEventListener("click", () => {
+            navigator.clipboard.writeText(copyText);
 
-        setTimeout(() => {
-            toast.style.visibility = "hidden"
-            toast.style.opacity = "0"
-        }, 1000)
-    })
+            const toast = document.createElement("div")
+            toast.className = "toast"
+            toast.innerHTML = message
+            document.body.append(toast)
+
+            setTimeout(() => {
+                toast.style.visibility = "visible"
+                toast.style.opacity = "1";
+            }, 0)
+
+            setTimeout(() => {
+                toast.style.visibility = "hidden";
+                toast.style.opacity = "0";
+            }, 1000);
+
+            setTimeout(() => {
+                toast.remove()
+            }, 1250)
+
+        });
+    });
 }
