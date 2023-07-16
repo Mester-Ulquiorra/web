@@ -41,7 +41,7 @@ button {
 
 /* Toast with message */
 .toast {
-    position: absolute;
+    position: fixed;
     left: 50%;
     bottom: 1rem;
     background-color: var(--primary);
@@ -52,6 +52,7 @@ button {
     visibility: hidden;
     opacity: 0;
     transition: all 0.25s;
+    width: max-content;
 }
 
 /* Scrollbar */
