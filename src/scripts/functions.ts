@@ -28,5 +28,5 @@ export function createToast(srcElem: string, copyText: string, message: string) 
 }
 
 export function localDate(unixTime: number) {
-    return new Date(unixTime * 1000)
+    return new Date(unixTime * 1000).toString()
 }
