@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout>
 	<main>
+		<a href="/punishments">Punishments</a>
 	</main>
 	<h1 id="placeholder">Please log in to continue</h1>
 </BaseLayout>
@@ -11,16 +12,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <style>
 	main {
 		display: none;
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+		grid-gap: 1rem;
 	}
 
 	#placeholder {
 		place-self: center;
 	}
 
-	#guilds {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-		margin: 1rem 0;
+	a {
+		background-color: var(--variant);
+		height: max-content;
+		padding: 1rem;
+		border-radius: 0.5rem;
+		transition: var(--transition);
+		font-size: 1.25rem;
+		font-weight: bold;
+
+		&:hover {
+			box-shadow: 0 0 0.5rem 0.25rem var(--primary);
+		}
 	}
 </style>
 
