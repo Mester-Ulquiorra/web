@@ -1,11 +1,6 @@
 interface UserData {
     userId: string,
     avatar: string,
-    guilds: {
-        id: string,
-        name: string,
-        icon: string
-    }[],
     lastFetch: string,
     userTag: string
 }
