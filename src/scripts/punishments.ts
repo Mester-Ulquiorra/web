@@ -22,7 +22,7 @@ if (userPunishments) {
             if (punishment.active === true) {
                 until = "Permanent"
             }
-        } else {
+        } else if (punishment.until !== -1) {
             until = localDate(punishment.until)
         }
 
