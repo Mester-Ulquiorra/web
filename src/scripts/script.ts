@@ -18,4 +18,10 @@ if (userData) {
 
     const userInfo = document.querySelector("#user-info") as HTMLDivElement
     userInfo.style.display = "inline-flex"
+
+    const guilds = document.querySelector("#guilds") as HTMLDivElement
+    const userGuilds = userData.guilds
+    if (guilds && userGuilds) {
+        guilds.innerHTML = userGuilds.map(guild => `<div class="guild"><img class="guild-img" src="https://media.discordapp.net/icons/${guild.id}/${guild.icon}.png" /><p class="guild-name">${guild.name}</p></div>`).join("")
+    }
 }

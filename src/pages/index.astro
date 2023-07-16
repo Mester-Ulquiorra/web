@@ -1,21 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import "../styles/guilds.css";
 ---
 
 <BaseLayout>
-	<main></main>
+	<main>
+		<h2>Guilds</h2>
+		<div id="guilds"></div>
+	</main>
 	<noscript>Please enable Javascript to continue!</noscript>
 </BaseLayout>
 
 <style>
 	main {
-		text-align: center;
+		display: grid;
 	}
 
 	noscript {
 		text-align: center;
 		font-size: 2rem;
 		font-weight: bold;
+	}
+
+	#guilds {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		margin: 1rem 0;
 	}
 </style>
 

@@ -21,6 +21,7 @@
 }
 
 main {
+    margin: auto;
     width: 88vw;
     max-width: 64rem;
 }
