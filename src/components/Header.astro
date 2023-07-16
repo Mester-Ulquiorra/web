@@ -9,9 +9,7 @@ import Icons from "./Icons.astro";
     <div id="user-info">
         <img id="avatar" src="" alt="" />
         <p id="username"></p>
-        <form action=`${Astro.site}api/user/logout`>
-            <button type="submit">Log out</button>
-        </form>
+        <a class="logout" href=`${Astro.site}api/user/logout`>Log out</a>
     </div>
 </header>
 
@@ -28,7 +26,7 @@ import Icons from "./Icons.astro";
         position: relative;
         cursor: pointer;
 
-        &:hover button {
+        &:hover a {
             visibility: visible;
             opacity: 1;
             transform: translate(-50%, 75%);
@@ -45,37 +43,29 @@ import Icons from "./Icons.astro";
         font-weight: bold;
     }
 
-    button {
-        visibility: hidden;
-        opacity: 0;
-        background-color: transparent;
-        color: var(--text);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        gap: 0.5rem;
-        font-weight: bold;
-        transition: var(--transition);
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-
-        &:hover {
-            background-color: var(--primary);
-        }
-
-        &::selection {
-            background-color: var(--secondary);
-        }
-    }
-
     a {
         background-color: transparent;
         padding: 0.5rem;
         border-radius: 0.5rem;
         transition: var(--transition);
-
+        
         &:hover {
             background-color: var(--primary);
+        }
+    }
+
+    .logout {
+        visibility: hidden;
+        opacity: 0;
+        color: var(--text);
+        gap: 0.5rem;
+        font-weight: bold;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &::selection {
+            background-color: var(--secondary);
         }
     }
 </style>
