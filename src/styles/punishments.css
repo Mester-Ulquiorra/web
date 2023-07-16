@@ -1,0 +1,17 @@
+.punishment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--variant);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    & p {
+        hyphens: auto;
+    }
+
+    &:not(.active) {
+        opacity: 50%;
+    }
+}

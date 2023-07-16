@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import "../styles/punishments.css";
+---
+
+<BaseLayout>
+    <main>
+        <h1>Punishments</h1>
+        <div id="punishments"></div>
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        display: none;
+        margin: 1rem auto;
+        gap: 1rem;
+    }
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        grid-gap: 1rem;
+    }
+</style>
+
+<script src="../scripts/punishments.ts"></script>
