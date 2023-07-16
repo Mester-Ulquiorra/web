@@ -23,7 +23,25 @@ if (userData) {
     const userInfo = document.querySelector("#user-info") as HTMLDivElement
     userInfo.style.display = "inline-flex"
 
+    // Last updated text in footer
     const lastUpdated = new Date(userData.lastFetch).toDateString()
     const lastUpdatedElement = document.querySelector("#last-updated") as HTMLElement
     lastUpdatedElement.innerHTML = `Last updated: ${lastUpdated}`
+
+    // Click to copy link to server
+    const serverLink = document.querySelector("#server-link") as HTMLButtonElement
+    serverLink.addEventListener("click", () => {
+        // Copy server link to clipboard
+        navigator.clipboard.writeText("https://discord.gg/MfmUFk5kbe")
+
+        // Show "Copied to clipboard" toast for 1s
+        const toast = document.querySelector("#toast") as HTMLDivElement
+        toast.style.visibility = "visible"
+        toast.style.opacity = "1"
+
+        setTimeout(() => {
+            toast.style.visibility = "hidden"
+            toast.style.opacity = "0"
+        }, 1000)
+    })
 }
