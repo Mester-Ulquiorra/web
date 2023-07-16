@@ -23,6 +23,8 @@ import Icons from "./Icons.astro";
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 1rem;
+        background-color: var(--variant);
     }
 
     div {
@@ -70,8 +72,23 @@ import Icons from "./Icons.astro";
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: max-content;
-        margin: 0.5rem;
+        width: 100%;
+        padding: 0.5rem;
+        margin: 0.25rem 0;
         transition: var(--transition);
+        background-color: var(--variant);
+        border-radius: 0.75rem;
+        box-shadow: 0 0 0.25rem 0.25rem var(--bg);
+    }
+
+    form {
+        width: 100%;
+        background-color: transparent;
+        border-radius: 0.5rem;
+        transition: var(--transition);
+
+        &:hover {
+            background-color: var(--primary);
+        }
     }
 </style>
