@@ -9,18 +9,16 @@ import "../styles/guilds.css";
 		<h2>Guilds</h2>
 		<div id="guilds"></div>
 	</main>
-	<noscript>Please enable Javascript to continue!</noscript>
+	<h1 id="placeholder">Please log in to continue</h1>
 </BaseLayout>
 
 <style>
 	main {
-		display: grid;
+		display: none;
 	}
 
-	noscript {
-		text-align: center;
-		font-size: 2rem;
-		font-weight: bold;
+	#placeholder {
+		place-self: center;
 	}
 
 	#guilds {

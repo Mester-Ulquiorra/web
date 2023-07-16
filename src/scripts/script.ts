@@ -5,6 +5,10 @@ const apiUrl = new URL(url)
 const userData = await getUserData(apiUrl)
 
 if (userData) {
+    // Only show page if there is user data
+    (document.querySelector("main") as HTMLElement).style.display = "grid";
+    (document.querySelector("#placeholder") as HTMLHeadingElement).style.display = "none";
+
     // Setting the user avatar
     const userAvatar = document.querySelector("#avatar") as HTMLImageElement
     userAvatar.src = `https://media.discordapp.net/avatars/${userData?.userId}/${userData?.avatar}.png`
