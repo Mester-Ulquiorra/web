@@ -28,7 +28,5 @@ export function createToast(srcElem: string, copyText: string, message: string) 
 }
 
 export function localDate(unixTime: number) {
-    const locale = Intl.DateTimeFormat().resolvedOptions().locale
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    return new Date(unixTime * 1000).toLocaleString(locale, { timeZone: timeZone })
+    return new Date(unixTime * 1000)
 }
