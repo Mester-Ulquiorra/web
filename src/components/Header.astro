@@ -1,6 +1,7 @@
 ---
 import LoginButton from "./LoginButton.astro";
 import Icons from "./Icons.astro";
+import Toast from "./Toast.astro";
 import { getUserData } from "../scripts/userData";
 import { getUrl } from "../scripts/functions";
 
@@ -19,7 +20,7 @@ const userData = await getUserData(url);
                 />
                 <p>{userData?.userTag}</p>
                 <menu>
-                    <button class="server-link" id="server-link">
+                    <button id="server-link" type="button">
                         Mester's hub
                     </button>
                     <form action={`${Astro.site}api/user/logout`}>
@@ -32,6 +33,7 @@ const userData = await getUserData(url);
         )
     }
 </header>
+<Toast id="server-link">Copied server link to clipboard!</Toast>
 
 <style>
     header {
@@ -108,3 +110,25 @@ const userData = await getUserData(url);
         }
     }
 </style>
+
+<script>
+    const serverLinkButton = document.getElementById(
+        "server-link"
+    ) as HTMLButtonElement;
+    const serverLink = "https://discord.gg/MfmUFk5kbe";
+    const toast = document.getElementById(
+        "toast-server-link"
+    ) as HTMLDivElement;
+
+    serverLinkButton.addEventListener("click", () => {
+        navigator.clipboard.writeText(serverLink);
+
+        toast.style.visibility = "visible";
+        toast.style.opacity = "1";
+
+        setTimeout(() => {
+            toast.style.visibility = "hidden";
+            toast.style.opacity = "0";
+        }, 1500);
+    });
+</script>

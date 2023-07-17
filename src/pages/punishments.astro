@@ -1,19 +1,37 @@
 ---
+import Punishment from "../components/Punishment.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getUrl } from "../scripts/functions";
+import { getUserPunishments } from "../scripts/userData";
 
-import "../styles/punishments.css";
+const url = getUrl("punishments");
+const userPunishments = await getUserPunishments(url);
 ---
 
 <BaseLayout>
     <main>
         <h1>Punishments</h1>
-        <div id="punishments"></div>
+        <div>
+            {
+                userPunishments?.map((punishment) => (
+                    <Punishment
+                        id={punishment.id}
+                        type={punishment.type}
+                        reason={punishment.reason}
+                        moderator={punishment.moderator}
+                        at={punishment.at}
+                        until={punishment.until}
+                        active={punishment.active}
+                    />
+                ))
+            }
+        </div>
     </main>
 </BaseLayout>
 
 <style>
     main {
-        display: none;
+        display: grid;
         grid-template-rows: auto 1fr;
         margin: 1rem auto;
         gap: 1rem;
@@ -27,4 +45,24 @@ import "../styles/punishments.css";
     }
 </style>
 
-<script src="../scripts/punishments.ts"></script>
+<script>
+    const punishmentElems = document.querySelectorAll(
+        ".punishment"
+    ) as NodeListOf<HTMLDivElement>;
+    for (const punishmentElem of punishmentElems) {
+        const id = punishmentElem.dataset.id as string;
+        const toast = document.getElementById(`toast-${id}`) as HTMLDivElement;
+
+        punishmentElem.addEventListener("click", () => {
+            navigator.clipboard.writeText(id);
+
+            toast.style.visibility = "visible";
+            toast.style.opacity = "1";
+
+            setTimeout(() => {
+                toast.style.visibility = "hidden";
+                toast.style.opacity = "0";
+            }, 1500);
+        });
+    }
+</script>

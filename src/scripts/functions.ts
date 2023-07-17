@@ -31,7 +31,14 @@ export function localDate(unixTime: number) {
     return new Date(unixTime * 1000).toString()
 }
 
-export function getUrl() {
-    const url = `https://ucp.mester.info/api/user${process.env.NODE_ENV === "development" ? "?test=true" : ""}`
+export function getUrl(type?: string) {
+    let url
+
+    if (type === "punishments") {
+        url = `https://ucp.mester.info/api/user/punishments${process.env.NODE_ENV === "development" ? "?test=true" : ""}`
+    } else {
+        url = `https://ucp.mester.info/api/user${process.env.NODE_ENV === "development" ? "?test=true" : ""}`
+    }
+
     return new URL(url)
 }
