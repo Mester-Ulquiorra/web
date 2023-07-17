@@ -1,4 +1,12 @@
-<footer id="last-updated"></footer>
+---
+import { getUrl } from "../scripts/functions";
+import { getUserData } from "../scripts/userData";
+
+const url = getUrl();
+const userData = await getUserData(url);
+---
+
+<footer>Last fetched: {new Date(userData!.lastFetch).toString()}</footer>
 
 <style>
     footer {

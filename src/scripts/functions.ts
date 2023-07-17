@@ -30,3 +30,8 @@ export function createToast(srcElem: string, copyText: string, message: string) 
 export function localDate(unixTime: number) {
     return new Date(unixTime * 1000).toString()
 }
+
+export function getUrl() {
+    const url = `https://ucp.mester.info/api/user${process.env.NODE_ENV === "development" ? "?test=true" : ""}`
+    return new URL(url)
+}

@@ -1,21 +1,36 @@
 ---
 import LoginButton from "./LoginButton.astro";
 import Icons from "./Icons.astro";
+import { getUserData } from "../scripts/userData";
+import { getUrl } from "../scripts/functions";
+
+const url = getUrl();
+const userData = await getUserData(url);
 ---
 
 <header>
     <a href="/"><Icons name="home" /></a>
-    <LoginButton />
-    <div id="user-info">
-        <img id="avatar" src="" alt="" />
-        <p id="username"></p>
-        <menu>
-            <button class="server-link" id="server-link">Mester's hub</button>
-            <form action=`${Astro.site}api/user/logout`>
-                <button type="submit">Log out</button>
-            </form>
-        </menu>
-    </div>
+    {
+        userData ? (
+            <div>
+                <img
+                    src={`https://media.discordapp.net/avatars/${userData?.userId}/${userData?.avatar}.png`}
+                    alt="User avatar"
+                />
+                <p>{userData?.userTag}</p>
+                <menu>
+                    <button class="server-link" id="server-link">
+                        Mester's hub
+                    </button>
+                    <form action={`${Astro.site}api/user/logout`}>
+                        <button type="submit">Log out</button>
+                    </form>
+                </menu>
+            </div>
+        ) : (
+            <LoginButton />
+        )
+    }
 </header>
 
 <style>
@@ -28,7 +43,7 @@ import Icons from "./Icons.astro";
     }
 
     div {
-        display: none;
+        display: inline-flex;
         gap: 0.5rem;
         position: relative;
         cursor: pointer;
