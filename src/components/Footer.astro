@@ -1,12 +1,12 @@
 ---
-import { getUrl } from "../scripts/functions";
+import { getUrl, localDate } from "../scripts/functions";
 import { getUserData } from "../scripts/userData";
 
 const url = getUrl();
 const userData = await getUserData(url);
 ---
 
-<footer>Last fetched: {new Date(userData!.lastFetch).toString()}</footer>
+{userData ? <footer>Last fetched: {localDate(userData.lastFetch)}</footer> : ""}
 
 <style>
   footer {

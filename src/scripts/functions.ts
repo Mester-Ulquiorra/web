@@ -27,8 +27,12 @@ export function createToast(srcElem: string, copyText: string, message: string) 
     });
 }
 
-export function localDate(unixTime: number) {
-    return new Date(unixTime * 1000).toString()
+export function localDate(time: number | string) {
+    if (typeof time === "number") {
+        return new Date(time * 1000).toLocaleString()
+    } else {
+        return new Date(time).toLocaleString()
+    }
 }
 
 export function getUrl(type?: string) {
