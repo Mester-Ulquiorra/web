@@ -3,30 +3,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-	<main>
-		<a href="/punishments">Punishments</a>
-	</main>
+  <main id="swup">
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero totam
+      dolorem sint a placeat. Odio, debitis non perferendis optio asperiores
+      impedit amet doloremque expedita consectetur et ullam aliquid quibusdam
+      omnis!
+    </p>
+  </main>
 </BaseLayout>
 
 <style>
-	main {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
-		grid-template-rows: min-content;
-		grid-gap: 1rem;
-	}
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    grid-template-rows: min-content;
+    grid-gap: 1rem;
+  }
 
-	a {
-		background-color: var(--variant);
-		height: max-content;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		transition: var(--transition);
-		font-size: 1.25rem;
-		font-weight: bold;
+  a {
+    background-color: var(--bg);
+    height: max-content;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: var(--border);
 
-		&:hover {
-			box-shadow: 0 0 0.5rem 0.25rem var(--primary);
-		}
-	}
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
 </style>

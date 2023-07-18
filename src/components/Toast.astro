@@ -1,6 +1,6 @@
 ---
 interface Props {
-    id: string;
+  id: string;
 }
 
 const { id } = Astro.props;
@@ -9,18 +9,19 @@ const { id } = Astro.props;
 <div class="toast" id=`toast-${id}`><slot /></div>
 
 <style>
-    div {
-        position: fixed;
-        left: 50%;
-        bottom: 1rem;
-        background-color: var(--primary);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        transform: translateX(-50%);
-        z-index: 3;
-        visibility: hidden;
-        opacity: 0;
-        transition: all 0.25s;
-        width: max-content;
-    }
+  div {
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transform: translateX(-50%);
+    z-index: 3;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s;
+    width: max-content;
+  }
 </style>

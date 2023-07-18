@@ -9,10 +9,11 @@ const userData = await getUserData(url);
 <footer>Last fetched: {new Date(userData!.lastFetch).toString()}</footer>
 
 <style>
-    footer {
-        text-align: center;
-        opacity: 0.75;
-        font-size: 0.75rem;
-        padding: 0.5rem;
-    }
+  footer {
+    text-align: center;
+    opacity: 0.75;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    border-top: var(--border);
+  }
 </style>

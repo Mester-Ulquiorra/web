@@ -2,31 +2,31 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
-    <main>
-        <h1>Login Failed!</h1>
-        <a href="/">Please try again</a>
-    </main>
+<BaseLayout title="Login failed">
+  <main id="swup">
+    <h1>Login Failed!</h1>
+    <a href="/">Please try again</a>
+  </main>
 </BaseLayout>
 
 <style>
-    main {
-        display: grid;
-        place-items: center;
-        gap: 1rem;
-    }
+  main {
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+  }
 
-    a {
-        background: var(--primary);
-        color: var(--bg);
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        font-size: 1.25rem;
-        font-weight: bold;
-        transition: var(--transition);
+  a {
+    background: var(--primary);
+    color: var(--bg);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: var(--transition);
 
-        &:hover {
-            background: var(--secondary);
-        }
+    &:hover {
+      background: var(--secondary);
     }
+  }
 </style>

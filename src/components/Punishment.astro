@@ -3,13 +3,13 @@ import { localDate } from "../scripts/functions";
 import Toast from "./Toast.astro";
 
 interface Props {
-    id: string;
-    type: number;
-    reason: string;
-    moderator: string;
-    at: number;
-    until: number;
-    active: boolean;
+  id: string;
+  type: number;
+  reason: string;
+  moderator: string;
+  at: number;
+  until: number;
+  active: boolean;
 }
 
 const { id, type, reason, moderator, at, until, active } = Astro.props;
@@ -19,53 +19,60 @@ const atString = localDate(at);
 const types = ["Warning", "Mute", "Kick", "Ban"];
 
 if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
-    if (active === true) {
-        untilString = "Permanent";
-    }
+  if (active === true) {
+    untilString = "Permanent";
+  }
 } else if (until !== -1) {
-    untilString = localDate(until);
+  untilString = localDate(until);
 }
 ---
 
 <div class:list={["punishment", active ? "active" : ""]} data-id={id}>
-    <p><b>Type:</b>{types[type]}</p>
-    <p><b>Reason:</b>{reason}</p>
-    <p><b>Moderator:</b>{moderator}</p>
-    <p><b>At:</b>{atString}</p>
-    {
-        untilString !== "" ? (
-            <p>
-                <b>Until:</b>
-                {untilString}
-            </p>
-        ) : (
-            ""
-        )
-    }
+  <p><b>Type:</b>{types[type]}</p>
+  <p><b>Reason:</b>{reason}</p>
+  <p><b>Moderator:</b>{moderator}</p>
+  <p><b>At:</b>{atString}</p>
+  {
+    untilString !== "" ? (
+      <p>
+        <b>Until:</b>
+        {untilString}
+      </p>
+    ) : (
+      ""
+    )
+  }
 </div>
 <Toast {id}>Copied punishment ID to clipboard!</Toast>
 
 <style>
-    div {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        background-color: var(--variant);
-        padding: 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--bg);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: var(--border);
+    transition: var(--transition);
 
-        &:not(.active) {
-            opacity: 50%;
-        }
+    &:not(.active) {
+      opacity: 50%;
     }
 
-    p {
-        hyphens: auto;
-        display: inline-flex;
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
     }
+  }
 
-    b {
-        margin-right: 0.25rem;
-    }
+  p {
+    hyphens: auto;
+    display: inline-flex;
+  }
+
+  b {
+    margin-right: 0.25rem;
+  }
 </style>

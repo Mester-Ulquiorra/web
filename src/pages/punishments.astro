@@ -8,61 +8,66 @@ const url = getUrl("punishments");
 const userPunishments = await getUserPunishments(url);
 ---
 
-<BaseLayout>
-    <main>
-        <h1>Punishments</h1>
-        <div>
-            {
-                userPunishments?.map((punishment) => (
-                    <Punishment
-                        id={punishment.id}
-                        type={punishment.type}
-                        reason={punishment.reason}
-                        moderator={punishment.moderator}
-                        at={punishment.at}
-                        until={punishment.until}
-                        active={punishment.active}
-                    />
-                ))
-            }
-        </div>
-    </main>
+<BaseLayout title="Punishments">
+  <main id="swup">
+    <div>
+      {
+        userPunishments?.map((punishment) => (
+          <Punishment
+            id={punishment.id}
+            type={punishment.type}
+            reason={punishment.reason}
+            moderator={punishment.moderator}
+            at={punishment.at}
+            until={punishment.until}
+            active={punishment.active}
+          />
+        ))
+      }
+    </div>
+  </main>
 </BaseLayout>
 
 <style>
-    main {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        margin: 1rem auto;
-        gap: 1rem;
-    }
+  main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+  }
 
-    div {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
-        grid-template-rows: min-content;
-        grid-gap: 1rem;
-    }
+  h1 {
+    display: block;
+    position: sticky;
+    top: 1rem;
+    z-index: 3;
+  }
+
+  div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    grid-template-rows: min-content;
+    grid-gap: 1rem;
+  }
 </style>
 
 <script>
-    const punishmentElems = document.querySelectorAll(
-        ".punishment"
-    ) as NodeListOf<HTMLDivElement>;
-    for (const punishmentElem of punishmentElems) {
-        const id = punishmentElem.dataset.id as string;
-        const toast = document.getElementById(`toast-${id}`) as HTMLDivElement;
+  const punishmentElems = document.querySelectorAll(
+    ".punishment"
+  ) as NodeListOf<HTMLDivElement>;
+  for (const punishmentElem of punishmentElems) {
+    const id = punishmentElem.dataset.id as string;
+    const toast = document.getElementById(`toast-${id}`) as HTMLDivElement;
 
-        punishmentElem.addEventListener("click", () => {
-            navigator.clipboard.writeText(id);
+    punishmentElem.addEventListener("click", () => {
+      navigator.clipboard.writeText(id);
 
-            toast.style.visibility = "visible";
-            toast.style.opacity = "1";
+      toast.style.visibility = "visible";
+      toast.style.opacity = "1";
 
-            setTimeout(() => {
-                toast.style.visibility = "hidden";
-                toast.style.opacity = "0";
-            }, 1500);
-        });
-    }
+      setTimeout(() => {
+        toast.style.visibility = "hidden";
+        toast.style.opacity = "0";
+      }, 1500);
+    });
+  }
 </script>

@@ -2,32 +2,60 @@
 import Footer from "../components/Footer.astro";
 import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
 
 import "../styles/style.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <Head />
-    </head>
-    <body>
-        <Header />
-        <slot />
-        <Footer />
-        <style>
-            body {
-                display: grid;
-                grid-template-rows: auto 1fr auto;
-                min-height: 100vh;
-                min-height: -webkit-fill-available;
-                background-color: var(--bg);
-                color: var(--text);
-            }
+  <head>
+    <Head title={title ? `${title} | Ulquiorra` : "Ulquiorra"} />
+  </head>
+  <body>
+    <Header title={title ?? "Ulquiorra"} />
+    <div class="content">
+      <Nav />
+      <slot />
+    </div>
+    <Footer />
+    <style>
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100dvh;
+        background-color: var(--bg);
+        color: var(--text);
+        overflow: none;
+      }
 
-            html {
-                height: -webkit-fill-available;
-            }
-        </style>
-    </body>
+      html,
+      body {
+        height: 100%;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: auto;
+        margin-top: 1rem;
+        overflow: auto;
+        position: relative;
+      }
+    </style>
+    <script>
+      import Swup from "swup";
+      import SwupFadeTheme from "@swup/fade-theme";
+      import SwupHeadPlugin from "@swup/head-plugin";
+
+      const swup = new Swup({
+        plugins: [new SwupFadeTheme(), new SwupHeadPlugin()],
+      });
+    </script>
+  </body>
 </html>

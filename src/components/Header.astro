@@ -1,134 +1,63 @@
 ---
 import LoginButton from "./LoginButton.astro";
-import Icons from "./Icons.astro";
 import Toast from "./Toast.astro";
 import { getUserData } from "../scripts/userData";
 import { getUrl } from "../scripts/functions";
+import UserProfile from "./UserProfile.astro";
 
 const url = getUrl();
 const userData = await getUserData(url);
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <header>
-    <a href="/"><Icons name="home" /></a>
-    {
-        userData ? (
-            <div>
-                <img
-                    src={`https://media.discordapp.net/avatars/${userData?.userId}/${userData?.avatar}.png`}
-                    alt="User avatar"
-                />
-                <p>{userData?.userTag}</p>
-                <menu>
-                    <button id="server-link" type="button">
-                        Mester's hub
-                    </button>
-                    <form action={`${Astro.site}api/user/logout`}>
-                        <button type="submit">Log out</button>
-                    </form>
-                </menu>
-            </div>
-        ) : (
-            <LoginButton />
-        )
-    }
+  <h1 id="swup">{title}</h1>
+  {
+    userData ? (
+      <UserProfile
+        userId={userData.userId}
+        avatar={userData.avatar}
+        userTag={userData.userTag}
+      />
+    ) : (
+      <LoginButton />
+    )
+  }
 </header>
 <Toast id="server-link">Copied server link to clipboard!</Toast>
 
 <style>
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem;
-        background-color: var(--variant);
-    }
-
-    div {
-        display: inline-flex;
-        gap: 0.5rem;
-        position: relative;
-        cursor: pointer;
-
-        &:hover menu {
-            visibility: visible;
-            opacity: 1;
-            transform: translate(-50%, 25%);
-        }
-    }
-
-    img {
-        height: 1.75rem;
-        border-radius: 100vmax;
-    }
-
-    p {
-        font-size: 1.25rem;
-        font-weight: bold;
-    }
-
-    a,
-    button {
-        background-color: transparent;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        transition: var(--transition);
-
-        &:hover {
-            background-color: var(--primary);
-        }
-    }
-
-    menu {
-        display: grid;
-        visibility: hidden;
-        opacity: 0;
-        color: var(--text);
-        gap: 0.5rem;
-        font-weight: bold;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        padding: 0.5rem;
-        margin: 0.25rem 0;
-        transition: var(--transition);
-        background-color: var(--variant);
-        border-radius: 0.75rem;
-        box-shadow: 0 0 0.25rem 0.25rem var(--bg);
-        z-index: 2;
-    }
-
-    form {
-        width: 100%;
-        background-color: transparent;
-        border-radius: 0.5rem;
-        transition: var(--transition);
-
-        &:hover {
-            background-color: var(--primary);
-        }
-    }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--bg);
+    border-bottom: var(--border);
+  }
 </style>
 
 <script>
-    const serverLinkButton = document.getElementById(
-        "server-link"
-    ) as HTMLButtonElement;
-    const serverLink = "https://discord.gg/MfmUFk5kbe";
-    const toast = document.getElementById(
-        "toast-server-link"
-    ) as HTMLDivElement;
+  const serverLinkButton = document.getElementById(
+    "server-link"
+  ) as HTMLButtonElement;
+  const serverLink = "https://discord.gg/MfmUFk5kbe";
+  const toast = document.getElementById("toast-server-link") as HTMLDivElement;
 
-    serverLinkButton.addEventListener("click", () => {
-        navigator.clipboard.writeText(serverLink);
+  serverLinkButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(serverLink);
 
-        toast.style.visibility = "visible";
-        toast.style.opacity = "1";
+    toast.style.visibility = "visible";
+    toast.style.opacity = "1";
 
-        setTimeout(() => {
-            toast.style.visibility = "hidden";
-            toast.style.opacity = "0";
-        }, 1500);
-    });
+    setTimeout(() => {
+      toast.style.visibility = "hidden";
+      toast.style.opacity = "0";
+    }, 1500);
+  });
 </script>
