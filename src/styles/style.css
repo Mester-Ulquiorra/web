@@ -25,10 +25,7 @@
 }
 
 main {
-    right: 0;
-    place-self: center end;
-    width: 88vw;
-    max-width: 64rem;
+    overflow: auto;
 }
 
 a,

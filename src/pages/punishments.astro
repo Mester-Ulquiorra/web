@@ -10,39 +10,24 @@ const userPunishments = await getUserPunishments(url);
 
 <BaseLayout title="Punishments">
   <main id="swup">
-    <div>
-      {
-        userPunishments?.map((punishment) => (
-          <Punishment
-            id={punishment.id}
-            type={punishment.type}
-            reason={punishment.reason}
-            moderator={punishment.moderator}
-            at={punishment.at}
-            until={punishment.until}
-            active={punishment.active}
-          />
-        ))
-      }
-    </div>
+    {
+      userPunishments?.map((punishment) => (
+        <Punishment
+          id={punishment.id}
+          type={punishment.type}
+          reason={punishment.reason}
+          moderator={punishment.moderator}
+          at={punishment.at}
+          until={punishment.until}
+          active={punishment.active}
+        />
+      ))
+    }
   </main>
 </BaseLayout>
 
 <style>
   main {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 1rem;
-  }
-
-  h1 {
-    display: block;
-    position: sticky;
-    top: 1rem;
-    z-index: 3;
-  }
-
-  div {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
     grid-template-rows: min-content;

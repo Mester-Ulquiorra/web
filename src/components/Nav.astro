@@ -9,18 +9,15 @@ import Icons from "./Icons.astro";
 
 <style>
   nav {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-rows: min-content;
     align-items: center;
-    height: 100%;
-    margin-left: 0.5rem;
-    left: 0;
-    gap: 1rem;
+    overflow: auto;
+    grid-gap: 1rem;
+    width: min-content;
   }
 
   a {
-    width: 100%;
     display: grid;
     padding: 0.5rem 0.25rem;
     text-align: center;

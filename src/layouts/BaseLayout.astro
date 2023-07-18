@@ -42,10 +42,13 @@ const { title } = Astro.props;
 
       .content {
         display: grid;
-        grid-template-columns: auto;
-        padding-top: 1rem;
+        grid-template-columns: auto 1fr;
+        padding: 1rem;
+        padding-right: 0;
         overflow: auto;
+        height: 100%;
         position: relative;
+        grid-gap: 1rem;
       }
     </style>
     <script>
