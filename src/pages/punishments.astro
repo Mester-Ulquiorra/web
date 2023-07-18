@@ -36,23 +36,33 @@ const userPunishments = await getUserPunishments(url);
 </style>
 
 <script>
-  const punishmentElems = document.querySelectorAll(
-    ".punishment"
-  ) as NodeListOf<HTMLDivElement>;
-  for (const punishmentElem of punishmentElems) {
-    const id = punishmentElem.dataset.id as string;
-    const toast = document.getElementById(`toast-${id}`) as HTMLDivElement;
+  function punishmentToast() {
+    const punishmentElems = document.querySelectorAll(
+      ".punishment"
+    ) as NodeListOf<HTMLDivElement>;
+    for (const punishmentElem of punishmentElems) {
+      const id = punishmentElem.dataset.id as string;
+      const toast = document.getElementById(`toast-${id}`) as HTMLDivElement;
 
-    punishmentElem.addEventListener("click", () => {
-      navigator.clipboard.writeText(id);
+      punishmentElem.addEventListener("click", () => {
+        navigator.clipboard.writeText(id);
 
-      toast.style.visibility = "visible";
-      toast.style.opacity = "1";
+        toast.style.visibility = "visible";
+        toast.style.opacity = "1";
 
-      setTimeout(() => {
-        toast.style.visibility = "hidden";
-        toast.style.opacity = "0";
-      }, 1500);
-    });
+        setTimeout(() => {
+          toast.style.visibility = "hidden";
+          toast.style.opacity = "0";
+        }, 1500);
+      });
+    }
   }
+
+  if (document.readyState === "complete") {
+    punishmentToast();
+  } else {
+    document.addEventListener("DOMContentLoaded", () => punishmentToast());
+  }
+
+  document.addEventListener("swup:pageView", () => punishmentToast());
 </script>
