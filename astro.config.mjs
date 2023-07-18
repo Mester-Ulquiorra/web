@@ -12,7 +12,6 @@ export default defineConfig({
         theme: "fade",
         containers: ["#swup"],
         preload: true,
-        progress: true,
         smoothScrolling: true,
         updateHead: true,
     })],
