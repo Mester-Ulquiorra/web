@@ -87,7 +87,7 @@ const { id } = Astro.props;
       const menu = punishmentMenu.querySelector("menu") as HTMLMenuElement;
       document.addEventListener("click", (e) => {
         if (
-          (e.target as HTMLElement).closest(".punishment-menu") &&
+          (e.target as HTMLElement).closest(`.punishment-menu[data-id="${id}"]`) &&
           !menu.hasAttribute("open")
         ) {
           menu.toggleAttribute("open");
