@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@swup/astro": "^0.1.6",
-    "@types/node": "^20.4.2"
+    "@types/node": "^20.4.2",
+    "nanostores": "^0.9.3"
   }
 }

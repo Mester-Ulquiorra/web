@@ -1,6 +1,6 @@
 ---
 import { localDate } from "../scripts/functions";
-import Toast from "./Toast.astro";
+import PunishmentMenu from "./PunishmentMenu.astro";
 
 interface Props {
   id: string;
@@ -42,8 +42,8 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
       ""
     )
   }
+  <PunishmentMenu {id} />
 </div>
-<Toast {id}>Copied punishment ID to clipboard!</Toast>
 
 <style>
   div {
@@ -53,17 +53,12 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
     background-color: var(--bg);
     padding: 1rem;
     border-radius: 0.5rem;
-    cursor: pointer;
     border: var(--border);
     transition: var(--transition);
+    position: relative;
 
     &:not(.active) {
       opacity: 50%;
-    }
-
-    &:hover {
-      background-color: var(--primary);
-      color: var(--on-primary);
     }
   }
 

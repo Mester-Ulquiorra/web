@@ -1,32 +1,3 @@
-export function createToast(srcElem: string, copyText: string, message: string) {
-    const srcElems = document.querySelectorAll(srcElem);
-    srcElems.forEach((elem) => {
-        elem.addEventListener("click", () => {
-            navigator.clipboard.writeText(copyText);
-
-            const toast = document.createElement("div")
-            toast.className = "toast"
-            toast.innerHTML = message
-            document.body.append(toast)
-
-            setTimeout(() => {
-                toast.style.visibility = "visible"
-                toast.style.opacity = "1";
-            }, 0)
-
-            setTimeout(() => {
-                toast.style.visibility = "hidden";
-                toast.style.opacity = "0";
-            }, 1000);
-
-            setTimeout(() => {
-                toast.remove()
-            }, 1250)
-
-        });
-    });
-}
-
 export function localDate(time: number | string) {
     if (typeof time === "number") {
         return new Date(time * 1000).toLocaleString()

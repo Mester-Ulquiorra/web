@@ -1,0 +1,102 @@
+---
+import Icons from "./Icons.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="punishment-menu" data-id={id}>
+  <Icons name="menu" />
+  <menu>
+    <button class=`copy-button` type="button"
+      ><Icons name="copy" /> Copy Punishment ID</button
+    >
+  </menu>
+</div>
+
+<style>
+  div {
+    position: absolute;
+    align-self: end;
+    transition: var(--transition);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+
+  menu {
+    display: grid;
+    z-index: 2;
+    right: 0;
+    position: absolute;
+    width: max-content;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    border: var(--border);
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition);
+
+    &[open] {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  button {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+</style>
+
+<script>
+  import { $toastText } from "../scripts/stores";
+
+  function punishmentToast() {
+    const punishmentMenus = document.querySelectorAll(
+      ".punishment-menu"
+    ) as NodeListOf<HTMLDivElement>;
+
+    for (const punishmentMenu of punishmentMenus) {
+      const id = punishmentMenu.dataset.id as string;
+      const copyButton = punishmentMenu.querySelector(
+        `.copy-button`
+      ) as HTMLButtonElement;
+
+      copyButton.addEventListener("click", () => {
+        navigator.clipboard.writeText(id);
+        $toastText.set("Copied punishment ID to clipboard");
+      });
+
+      const menu = punishmentMenu.querySelector("menu") as HTMLMenuElement;
+      document.addEventListener("click", (e) => {
+        if (
+          (e.target as HTMLElement).closest(".punishment-menu") &&
+          !menu.hasAttribute("open")
+        ) {
+          menu.toggleAttribute("open");
+        } else {
+          menu.removeAttribute("open");
+        }
+      });
+    }
+  }
+
+  document.addEventListener("swup:pageView", () => punishmentToast());
+</script>

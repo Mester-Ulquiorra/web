@@ -43,21 +43,15 @@ const { title } = Astro.props;
 </style>
 
 <script>
+  import { $toastText } from "../scripts/stores";
+
   const serverLinkButton = document.getElementById(
     "server-link"
   ) as HTMLButtonElement;
   const serverLink = "https://discord.gg/MfmUFk5kbe";
-  const toast = document.getElementById("toast-server-link") as HTMLDivElement;
 
   serverLinkButton.addEventListener("click", () => {
     navigator.clipboard.writeText(serverLink);
-
-    toast.style.visibility = "visible";
-    toast.style.opacity = "1";
-
-    setTimeout(() => {
-      toast.style.visibility = "hidden";
-      toast.style.opacity = "0";
-    }, 1500);
+    $toastText.set("Copied server link to clipboard");
   });
 </script>

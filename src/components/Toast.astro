@@ -1,12 +1,4 @@
----
-interface Props {
-  id: string;
-}
-
-const { id } = Astro.props;
----
-
-<div class="toast" id=`toast-${id}`><slot /></div>
+<div class="toast"></div>
 
 <style>
   div {

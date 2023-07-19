@@ -3,6 +3,7 @@ import Footer from "../components/Footer.astro";
 import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Nav from "../components/Nav.astro";
+import Toast from "../components/Toast.astro";
 
 import "../styles/style.css";
 
@@ -24,6 +25,7 @@ const { title } = Astro.props;
       <Nav />
       <slot />
     </div>
+    <Toast />
     <Footer />
     <style>
       body {
