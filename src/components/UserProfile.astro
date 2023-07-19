@@ -47,7 +47,8 @@ const { userId, avatar, userTag } = Astro.props;
 
   .info {
     padding: 0.5rem;
-    border-radius: 0.75rem 0.75rem 0 0;
+    border-radius: calc(var(--border-radius) * 1.5)
+      calc(var(--border-radius) * 1.5) 0 0;
     border: var(--border);
     border-color: transparent;
     border-bottom: none;
@@ -72,7 +73,7 @@ const { userId, avatar, userTag } = Astro.props;
   button {
     background-color: transparent;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     transition: var(--transition);
 
     &:hover {
@@ -95,7 +96,8 @@ const { userId, avatar, userTag } = Astro.props;
     margin: 0.75rem 0;
     transition: var(--transition);
     background-color: var(--bg);
-    border-radius: 0 0 0.75rem 0.75rem;
+    border-radius: 0 0 calc(var(--border-radius) * 1.5)
+      calc(var(--border-radius) * 1.5);
     border: var(--border);
     border-top: none;
     top: 0.5rem;
@@ -104,7 +106,7 @@ const { userId, avatar, userTag } = Astro.props;
   form {
     width: 100%;
     background-color: transparent;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     transition: var(--transition);
 
     &:hover {

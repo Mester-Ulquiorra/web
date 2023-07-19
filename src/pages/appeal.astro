@@ -39,7 +39,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     all: unset;
     border: var(--border);
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     hyphens: auto;
 
     &::placeholder {
@@ -60,7 +60,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     width: min-content;
     border: var(--border);
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     transition: var(--transition);
 
     &:hover {

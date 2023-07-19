@@ -20,6 +20,7 @@
     --text: #a6eeff;
     --transition: all 0.125s;
     --border: 0.1rem solid var(--text);
+    --border-radius: 0.5rem;
 }
 
 /* Set global values */
@@ -54,6 +55,6 @@ button {
 
 ::-webkit-scrollbar-thumb {
     background: var(--text);
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius);
     border: solid 0.375rem var(--bg);
 }
