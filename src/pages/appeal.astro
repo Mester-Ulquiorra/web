@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Appeal">
+  <main>
+    <form action=`${Astro.site}api/user/appeal-create`>
+      <label for="punishmentId">Punishment ID</label>
+      <input name="punishmentId" type="text" id="punishmentId" />
+      <label for="reason">Reason</label>
+      <textarea
+        name="reason"
+        id="reason"
+        placeholder="Why do you think your appeal should be appealed? (128-1024 chars)"
+        rows="4"
+        minlength="128"
+        maxlength="1024"></textarea>
+      <label for="additional">Additional information</label>
+      <textarea
+        name="additional"
+        id="additional"
+        placeholder="Is there anything else you'd like to let us know? (128-1024 chars)"
+        rows="4"
+        minlength="128"
+        maxlength="1024"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+</BaseLayout>
+
+<style>
+  form {
+    display: grid;
+    grid-gap: 1rem;
+  }
+
+  input,
+  textarea {
+    all: unset;
+    border: var(--border);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    hyphens: auto;
+
+    &::placeholder {
+      color: var(--secondary);
+      opacity: 50%;
+    }
+  }
+
+  label {
+    font-weight: bold;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  button {
+    width: min-content;
+    border: var(--border);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+</style>
+
+<script>
+  const id = sessionStorage.getItem("id") ?? "";
+  const punishmentIdInput = document.getElementById(
+    "punishmentId"
+  ) as HTMLInputElement;
+  punishmentIdInput.value = id;
+
+  sessionStorage.clear();
+</script>

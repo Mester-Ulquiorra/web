@@ -14,6 +14,9 @@ const { id } = Astro.props;
     <button class=`copy-button` type="button"
       ><Icons name="copy" /> Copy Punishment ID</button
     >
+    <button class="appeal-button" type="button"
+      ><Icons name="gavel" /> Appeal</button
+    >
   </menu>
 </div>
 
@@ -54,6 +57,9 @@ const { id } = Astro.props;
   }
 
   button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: var(--transition);
@@ -68,35 +74,42 @@ const { id } = Astro.props;
 <script>
   import { $toastText } from "../scripts/stores";
 
-  function punishmentToast() {
-    const punishmentMenus = document.querySelectorAll(
-      ".punishment-menu"
-    ) as NodeListOf<HTMLDivElement>;
+  const punishmentMenus = document.querySelectorAll(
+    ".punishment-menu"
+  ) as NodeListOf<HTMLDivElement>;
 
-    for (const punishmentMenu of punishmentMenus) {
-      const id = punishmentMenu.dataset.id as string;
-      const copyButton = punishmentMenu.querySelector(
-        `.copy-button`
-      ) as HTMLButtonElement;
+  for (const punishmentMenu of punishmentMenus) {
+    const id = punishmentMenu.dataset.id as string;
+    const copyButton = punishmentMenu.querySelector(
+      `.copy-button`
+    ) as HTMLButtonElement;
 
-      copyButton.addEventListener("click", () => {
-        navigator.clipboard.writeText(id);
-        $toastText.set("Copied punishment ID to clipboard");
-      });
+    copyButton.addEventListener("click", () => {
+      navigator.clipboard.writeText(id);
+      $toastText.set("Copied punishment ID to clipboard");
+    });
 
-      const menu = punishmentMenu.querySelector("menu") as HTMLMenuElement;
-      document.addEventListener("click", (e) => {
-        if (
-          (e.target as HTMLElement).closest(`.punishment-menu[data-id="${id}"]`) &&
-          !menu.hasAttribute("open")
-        ) {
-          menu.toggleAttribute("open");
-        } else {
-          menu.removeAttribute("open");
-        }
-      });
-    }
+    const menu = punishmentMenu.querySelector("menu") as HTMLMenuElement;
+    document.addEventListener("click", (e) => {
+      if (
+        (e.target as HTMLElement).closest(
+          `.punishment-menu[data-id="${id}"]`
+        ) &&
+        !menu.hasAttribute("open")
+      ) {
+        menu.toggleAttribute("open");
+      } else {
+        menu.removeAttribute("open");
+      }
+    });
+
+    const appealButton = punishmentMenu.querySelector(
+      ".appeal-button"
+    ) as HTMLButtonElement;
+
+    appealButton.addEventListener("click", () => {
+      sessionStorage.setItem("id", id);
+      location.assign("/appeal");
+    });
   }
-
-  document.addEventListener("swup:pageView", () => punishmentToast());
 </script>
