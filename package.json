@@ -6,12 +6,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "deno run -A ./dist/server/entry.mjs",
+    "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/deno": "^4.2.0",
-    "astro": "^2.8.3"
+    "@astrojs/cloudflare": "^6.6.2",
+    "astro": "^2.9.2"
   },
   "devDependencies": {
     "nanostores": "^0.9.3"
