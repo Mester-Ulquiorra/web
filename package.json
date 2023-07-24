@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
+    "preview": "deno run -A ./dist/server/entry.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -14,7 +14,6 @@
     "astro": "^2.8.3"
   },
   "devDependencies": {
-    "@types/node": "^20.4.2",
     "nanostores": "^0.9.3"
   }
 }
