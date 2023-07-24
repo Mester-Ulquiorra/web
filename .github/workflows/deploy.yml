@@ -28,7 +28,7 @@ jobs:
         run: npm run build
         
       - name: Move package.json into dist
-        run: copy ./package.json ./dist
+        run: cp ./package.json ./dist
         
       - name: Deploy app
         uses: wangyucode/sftp-upload-action@v2.0.2
