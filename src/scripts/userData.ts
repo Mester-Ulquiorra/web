@@ -1,3 +1,5 @@
+import { getAPIRoute, APIRouteType } from "./functions";
+
 interface UserData {
   userId: string;
   avatar: string;
@@ -13,30 +15,40 @@ interface UserPunishments {
   at: number;
   until: number;
   active: boolean;
+  appealed: boolean;
 }
 
-export async function getUserData(url: URL) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Authentication failed");
+/**
+ * Get the response of an authorised route
+ * @param route the route to get 
+ * @param token the token to use
+ */
+function getAuthorisedRoute(route: APIRouteType, token: string) {
+  const url = new URL(getAPIRoute(route));
+  return fetch(url, {
+    headers: {
+      Authorization: token
     }
-    const userData = await response.json() as UserData;
-    return userData;
-  } catch (error) {
-    console.error(error);
-  }
+  })
+    .then(async response => {
+      if (!response.ok) {
+        throw new Error("Authentication failed");
+      }
+      // return as json
+      return response.json();
+    })
+    .catch(error => {
+      console.error(error);
+      return null;
+    });
 }
 
-export async function getUserPunishments(url: URL) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to get punishments");
-    }
-    const userPunishments = await response.json() as UserPunishments[];
-    return userPunishments;
-  } catch (error) {
-    console.error(error);
-  }
+export async function getUserData(token: string) {
+  const userData = await getAuthorisedRoute("user", token) as UserData;
+  return userData;
+}
+
+export async function getUserPunishments(token: string) {
+  const response = await getAuthorisedRoute("punishments", token) as UserPunishments[];
+  return response;
 }

@@ -6,8 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "preview": "wrangler pages dev ./dist"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^6.6.2",
@@ -15,6 +15,7 @@
     "nanostores": "^0.9.3"
   },
   "devDependencies": {
-    "@types/node": "^20.4.4"
+    "@types/node": "^20.4.5",
+    "wrangler": "^3.3.0"
   }
 }
