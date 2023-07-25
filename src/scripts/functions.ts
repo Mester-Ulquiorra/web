@@ -10,10 +10,10 @@ export function getUrl(type?: string) {
   let url;
 
   if (type === "punishments") {
-    url = `https://ucp.mester.info/api/user/punishments${ process.env.NODE_ENV === "development" ? "?test=true" : ""
+    url = `https://ucp-api.mester.info/user/punishments${ process.env.NODE_ENV === "development" ? "?test=true" : ""
       }`;
   } else {
-    url = `https://ucp.mester.info/api/user${ process.env.NODE_ENV === "development" ? "?test=true" : ""
+    url = `https://ucp-api.mester.info/user${ process.env.NODE_ENV === "development" ? "?test=true" : ""
       }`;
   }
 
