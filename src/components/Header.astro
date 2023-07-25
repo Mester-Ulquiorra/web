@@ -49,8 +49,10 @@ const { title } = Astro.props;
   ) as HTMLButtonElement;
   const serverLink = "https://discord.gg/MfmUFk5kbe";
 
-  serverLinkButton.addEventListener("click", () => {
-    navigator.clipboard.writeText(serverLink);
-    $toastText.set("Copied server link to clipboard");
-  });
+  serverLinkButton
+    ? serverLinkButton.addEventListener("click", () => {
+        navigator.clipboard.writeText(serverLink);
+        $toastText.set("Copied server link to clipboard");
+      })
+    : "";
 </script>
