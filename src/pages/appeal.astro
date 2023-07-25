@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getAPIRoute } from "../scripts/functions";
 
 const token = Astro.cookies.get("token").value ?? "";
+const apiRoute = getAPIRoute("createAppeal");
 ---
 
 <BaseLayout title="Appeal">
@@ -81,16 +83,15 @@ const token = Astro.cookies.get("token").value ?? "";
   sessionStorage.clear();
 </script>
 
-<script define:vars={{ token }}>
+<script define:vars={{ token, apiRoute }}>
 const form = document.getElementById("appeal");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
-  const api = "http://localhost:5657/user/create-appeal";
 
   // send post request
-  fetch(api, {
+  fetch(apiRoute, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
