@@ -3,12 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getAPIRoute } from "../scripts/functions";
 
 const token = Astro.cookies.get("token").value ?? "";
-const apiRoute = getAPIRoute("createAppeal");
+const appealApiRoute = getAPIRoute("createAppeal");
 ---
 
 <BaseLayout title="Appeal">
   <main>
-    <form id="appeal">
+    <form id="appeal" action={appealApiRoute} data-token={token}>
       <label for="punishmentId">Punishment ID</label>
       <input name="punishmentId" type="text" id="punishmentId" />
       <label for="reason">Reason</label>
@@ -83,31 +83,35 @@ const apiRoute = getAPIRoute("createAppeal");
   sessionStorage.clear();
 </script>
 
-<script define:vars={{ token, apiRoute }}>
-const form = document.getElementById("appeal");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
+<script>
+  import { $toastText } from "../scripts/stores";
 
-  // send post request
-  fetch(apiRoute, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        alert("todo: replace this with an error toast");
-        throw new Error("Network response was not ok");
-      }
-      alert("todo: replace this with a success toast");
+  const form = document.getElementById("appeal") as HTMLFormElement;
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    const appealApiRoute = form.getAttribute("action") as string;
+    const token = form.dataset.token as string;
+
+    // send post request
+    fetch(appealApiRoute, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(data),
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+      .then((response) => {
+        if (!response.ok) {
+          $toastText.set("Error: Something went wrong");
+          throw new Error("Network response was not ok");
+        }
+        $toastText.set("Success! Your appeal has been sent");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
 </script>
