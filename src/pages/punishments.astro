@@ -1,11 +1,10 @@
 ---
 import Punishment from "../components/Punishment.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getUrl } from "../scripts/functions";
 import { getUserPunishments } from "../scripts/userData";
 
-const url = getUrl("punishments");
-const userPunishments = await getUserPunishments(url);
+const token = Astro.cookies.get("token").value;
+const userPunishments = token ? await getUserPunishments(token) : null;
 ---
 
 <BaseLayout title="Punishments">

@@ -1,9 +1,9 @@
 ---
-import { getUrl, localDate } from "../scripts/functions";
+import { localDate } from "../scripts/functions";
 import { getUserData } from "../scripts/userData";
 
-const url = getUrl();
-const userData = await getUserData(url);
+const token = Astro.cookies.get("token").value;
+const userData = token ? await getUserData(token) : null;
 ---
 
 {userData ? <footer>Last fetched: {localDate(userData.lastFetch)}</footer> : ""}

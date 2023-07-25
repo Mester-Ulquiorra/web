@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const token = Astro.cookies.get("token").value ?? "";
 ---
 
 <BaseLayout title="Appeal">
   <main>
-    <form action=`https://ucp-api.mester.info/user/appeal-create`>
+    <form id="appeal">
       <label for="punishmentId">Punishment ID</label>
       <input name="punishmentId" type="text" id="punishmentId" />
       <label for="reason">Reason</label>
@@ -19,9 +21,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <textarea
         name="additional"
         id="additional"
-        placeholder="Is there anything else you'd like to let us know? (128-1024 chars)"
+        placeholder="Is there anything else you'd like to let us know? (max 1024 chars)"
         rows="4"
-        minlength="128"
         maxlength="1024"></textarea>
       <button type="submit">Submit</button>
     </form>
@@ -78,4 +79,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   punishmentIdInput.value = id;
 
   sessionStorage.clear();
+</script>
+
+<script define:vars={{ token }}>
+const form = document.getElementById("appeal");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  const api = "http://localhost:5657/user/create-appeal";
+
+  // send post request
+  fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        alert("todo: replace this with an error toast");
+        throw new Error("Network response was not ok");
+      }
+      alert("todo: replace this with a success toast");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
 </script>

@@ -1,4 +1,5 @@
 ---
+import { getAPIRoute } from '../scripts/functions';
 interface Props {
   userId: string;
   avatar: string;
@@ -6,6 +7,8 @@ interface Props {
 }
 
 const { userId, avatar, userTag } = Astro.props;
+
+const logoutRoute = getAPIRoute("logout");
 ---
 
 <div>
@@ -18,7 +21,7 @@ const { userId, avatar, userTag } = Astro.props;
   </div>
   <menu>
     <button id="server-link" type="button"> Mester's Hub</button>
-    <form action={`${Astro.site}api/user/logout`}>
+    <form action={logoutRoute}>
       <button type="submit">Log out</button>
     </form>
   </menu>

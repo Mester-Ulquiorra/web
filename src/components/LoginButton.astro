@@ -1,8 +1,11 @@
 ---
+import { getAPIRoute } from "../scripts/functions";
 import Icons from "./Icons.astro";
+
+const loginRoute = getAPIRoute("auth");
 ---
 
-<form action=`https://ucp-api.mester.info/auth`>
+<form action={loginRoute}>
   <button type="submit">Login to <Icons name="discord" /></button>
 </form>
 

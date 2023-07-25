@@ -2,11 +2,10 @@
 import LoginButton from "./LoginButton.astro";
 import Toast from "./Toast.astro";
 import { getUserData } from "../scripts/userData";
-import { getUrl } from "../scripts/functions";
 import UserProfile from "./UserProfile.astro";
 
-const url = getUrl();
-const userData = await getUserData(url);
+const token = Astro.cookies.get("token").value;
+const userData = token ? await getUserData(token) : null;
 
 interface Props {
   title: string;

@@ -6,12 +6,15 @@ dependencies:
     version: 6.6.2(astro@2.9.2)
   astro:
     specifier: ^2.9.2
-    version: 2.9.2
+    version: 2.9.2(@types/node@20.4.5)
   nanostores:
     specifier: ^0.9.3
     version: 0.9.3
 
 devDependencies:
+  '@types/node':
+    specifier: ^20.4.5
+    version: 20.4.5
   wrangler:
     specifier: ^3.3.0
     version: 3.3.0
@@ -33,7 +36,7 @@ packages:
     dependencies:
       '@astrojs/underscore-redirects': 0.2.0
       '@cloudflare/workers-types': 4.20230717.1
-      astro: 2.9.2
+      astro: 2.9.2(@types/node@20.4.5)
       esbuild: 0.17.19
       tiny-glob: 0.2.9
     dev: false
@@ -71,7 +74,7 @@ packages:
       astro: ^2.5.0
     dependencies:
       '@astrojs/prism': 2.1.2
-      astro: 2.9.2
+      astro: 2.9.2(@types/node@20.4.5)
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -1165,6 +1168,9 @@ packages:
       '@types/unist': 2.0.7
     dev: false
 
+  /@types/node@20.4.5:
+    resolution: {integrity: sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==}
+
   /@types/parse5@6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
     dev: false
@@ -1271,7 +1277,7 @@ packages:
       printable-characters: 1.0.42
     dev: true
 
-  /astro@2.9.2:
+  /astro@2.9.2(@types/node@20.4.5):
     resolution: {integrity: sha512-ejdGM9SbK58AvJS8lbkre/d5CoW8JftqaRxc9rGqzpiZQ8iU8gfdFmi3Hzkcvd2HrGvYYsJku88pM6tkBPniJQ==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
@@ -1334,7 +1340,7 @@ packages:
       typescript: 5.1.6
       unist-util-visit: 4.1.2
       vfile: 5.3.7
-      vite: 4.4.6
+      vite: 4.4.6(@types/node@20.4.5)
       vitefu: 0.2.4(vite@4.4.6)
       which-pm: 2.0.0
       yargs-parser: 21.1.1
@@ -3836,7 +3842,7 @@ packages:
       vfile-message: 3.1.4
     dev: false
 
-  /vite@4.4.6:
+  /vite@4.4.6(@types/node@20.4.5):
     resolution: {integrity: sha512-EY6Mm8vJ++S3D4tNAckaZfw3JwG3wa794Vt70M6cNJ6NxT87yhq7EC8Rcap3ahyHdo8AhCmV9PTk+vG1HiYn1A==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3864,6 +3870,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.4.5
       esbuild: 0.18.16
       postcss: 8.4.27
       rollup: 3.26.3
@@ -3879,7 +3886,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.4.6
+      vite: 4.4.6(@types/node@20.4.5)
     dev: false
 
   /vscode-css-languageservice@6.2.6:
