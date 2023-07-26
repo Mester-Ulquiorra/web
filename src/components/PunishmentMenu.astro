@@ -3,9 +3,10 @@ import Icons from "./Icons.astro";
 
 interface Props {
   id: string;
+  active: boolean;
 }
 
-const { id } = Astro.props;
+const { id, active } = Astro.props;
 ---
 
 <div class="punishment-menu" data-id={id}>
@@ -14,9 +15,13 @@ const { id } = Astro.props;
     <button class=`copy-button` type="button"
       ><Icons name="copy" /> Copy Punishment ID</button
     >
-    <button class="appeal-button" type="button"
-      ><Icons name="gavel" /> Appeal</button
-    >
+    {
+      active && (
+        <button class="appeal-button" type="button">
+          <Icons name="gavel" /> Appeal
+        </button>
+      )
+    }
   </menu>
 </div>
 
