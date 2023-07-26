@@ -113,6 +113,7 @@ if (!token) {
           throw new Error("Network response was not ok");
         }
         $toastText.set("Success! Your appeal has been sent");
+        location.replace("/punishments");
       })
       .catch((error) => {
         console.error("Error:", error);
