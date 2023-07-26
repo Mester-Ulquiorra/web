@@ -1,5 +1,5 @@
 ---
-import Icons from "./Icons.astro";
+import Icons from "../Icons.astro";
 
 interface Props {
   id: string;
@@ -77,7 +77,7 @@ const { id, active } = Astro.props;
 </style>
 
 <script>
-  import { $toastText } from "../scripts/stores";
+  import { $toastText } from "../../scripts/stores";
 
   const punishmentMenus = document.querySelectorAll(
     ".punishment-menu"
@@ -112,9 +112,10 @@ const { id, active } = Astro.props;
       ".appeal-button"
     ) as HTMLButtonElement;
 
-    appealButton.addEventListener("click", () => {
-      sessionStorage.setItem("id", id);
-      location.assign("/appeal");
-    });
+    appealButton &&
+      appealButton.addEventListener("click", () => {
+        sessionStorage.setItem("id", id);
+        location.assign("/appeal");
+      });
   }
 </script>

@@ -1,6 +1,6 @@
 ---
-import { localDate } from "../scripts/functions";
-import { getUserData } from "../scripts/userData";
+import { localDate } from "../../scripts/functions";
+import { getUserData } from "../../scripts/userData";
 
 const token = Astro.cookies.get("token").value;
 const userData = token ? await getUserData(token) : null;
