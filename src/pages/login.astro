@@ -4,7 +4,7 @@ import LoginLayout from "../layouts/LoginLayout.astro";
 
 const token = Astro.cookies.get("token").value;
 
-if (token) {
+if (token !== "") {
   return Astro.redirect("/");
 }
 ---
