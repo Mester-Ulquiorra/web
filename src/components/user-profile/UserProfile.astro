@@ -86,28 +86,33 @@ const logoutRoute = getAPIRoute("logout");
       const userInfo = this.querySelector("div") as HTMLDivElement;
 
       if (window.matchMedia("(max-width:768px)").matches) {
-        this.addEventListener("click", () => this.handleClick(menu, userInfo));
+        document.addEventListener("click", (e) => {
+          if (
+            (e.target as HTMLElement).closest("user-profile") &&
+            !menu.hasAttribute("open")
+          ) {
+            this.toggleMenu(menu, userInfo);
+          } else {
+            this.closeMenu(menu, userInfo);
+          }
+        });
       } else {
-        this.addEventListener("mouseover", () =>
-          this.handleMouseOver(menu, userInfo)
-        );
-        this.addEventListener("mouseout", () =>
-          this.handleMouseOut(menu, userInfo)
-        );
+        this.addEventListener("mouseover", () => this.openMenu(menu, userInfo));
+        this.addEventListener("mouseout", () => this.closeMenu(menu, userInfo));
       }
     }
 
-    handleClick(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
+    toggleMenu(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
       menu.toggleAttribute("open");
       userInfo.style.borderColor = "var(--text)";
     }
 
-    handleMouseOver(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
+    openMenu(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
       menu.setAttribute("open", "");
       userInfo.style.borderColor = "var(--text)";
     }
 
-    handleMouseOut(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
+    closeMenu(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
       menu.removeAttribute("open");
       userInfo.style.borderColor = "transparent";
     }
