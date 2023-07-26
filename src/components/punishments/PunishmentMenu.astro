@@ -27,11 +27,6 @@ const { id, active } = Astro.props;
     padding: 0.25rem;
     border-radius: var(--border-radius);
     cursor: pointer;
-
-    &:hover {
-      background-color: var(--primary);
-      color: var(--on-primary);
-    }
   }
 
   menu {
@@ -71,11 +66,23 @@ const { id, active } = Astro.props;
           ) &&
           !menu?.hasAttribute("open")
         ) {
-          menu?.toggleAttribute("open");
+          this.toggleMenu(menu);
         } else {
-          menu?.removeAttribute("open");
+          this.closeMenu(menu);
         }
       });
+    }
+
+    toggleMenu(menu: HTMLMenuElement | null) {
+      this.style.backgroundColor = "var(--primary)";
+      this.style.color = "var(--on-primary)";
+      menu?.toggleAttribute("open");
+    }
+
+    closeMenu(menu: HTMLMenuElement | null) {
+      this.style.removeProperty("background-color");
+      this.style.removeProperty("color");
+      menu?.removeAttribute("open");
     }
   }
 
