@@ -37,7 +37,7 @@ import Icons from "../Icons.astro";
 
 <script>
   const currentLocation = document.querySelector(
-    `a[href=${location.pathname}]`
+    `a[href="${location.pathname}"]`
   ) as HTMLAnchorElement;
 
   if (currentLocation) {
