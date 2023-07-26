@@ -11,16 +11,16 @@ interface Props {
 const { id, active } = Astro.props;
 ---
 
-<div class="punishment-menu" data-id={id}>
+<punishment-menu data-id={id}>
   <Icons name="menu" />
   <menu>
     <CopyPunishmentId {id} />
     {active && <AppealButton {id} />}
   </menu>
-</div>
+</punishment-menu>
 
 <style>
-  div {
+  punishment-menu {
     position: absolute;
     align-self: end;
     transition: var(--transition);
@@ -57,27 +57,27 @@ const { id, active } = Astro.props;
 </style>
 
 <script>
-  import { $toastText } from "../../scripts/stores";
+  class PunishmentMenu extends HTMLElement {
+    constructor() {
+      super();
 
-  const punishmentMenus = document.querySelectorAll(
-    ".punishment-menu"
-  ) as NodeListOf<HTMLDivElement>;
+      const id = this.dataset.id;
+      const menu = this.querySelector("menu");
 
-  for (const punishmentMenu of punishmentMenus) {
-    const id = punishmentMenu.dataset.id as string;
-
-    const menu = punishmentMenu.querySelector("menu") as HTMLMenuElement;
-    document.addEventListener("click", (e) => {
-      if (
-        (e.target as HTMLElement).closest(
-          `.punishment-menu[data-id="${id}"]`
-        ) &&
-        !menu.hasAttribute("open")
-      ) {
-        menu.toggleAttribute("open");
-      } else {
-        menu.removeAttribute("open");
-      }
-    });
+      document.addEventListener("click", (e) => {
+        if (
+          (e.target as HTMLElement).closest(
+            `punishment-menu[data-id="${id}"]`
+          ) &&
+          !menu?.hasAttribute("open")
+        ) {
+          menu?.toggleAttribute("open");
+        } else {
+          menu?.removeAttribute("open");
+        }
+      });
+    }
   }
+
+  customElements.define("punishment-menu", PunishmentMenu);
 </script>
