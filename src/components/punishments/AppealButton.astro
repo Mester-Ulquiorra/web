@@ -1,0 +1,45 @@
+---
+import Icons from "../Icons.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<button data-id={id}>
+  <Icons name="gavel" /> Appeal
+</button>
+
+<style>
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+</style>
+
+<script>
+  class AppealButton extends HTMLElement {
+    constructor() {
+      super();
+      const id = this.dataset.id as string;
+
+      this.addEventListener("click", () => {
+        sessionStorage.setItem("id", id);
+        location.assign("/appeal");
+      });
+    }
+  }
+
+  customElements.define("appeal-button", AppealButton);
+</script>

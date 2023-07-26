@@ -1,5 +1,6 @@
 ---
 import Icons from "../Icons.astro";
+import AppealButton from "./AppealButton.astro";
 
 interface Props {
   id: string;
@@ -15,13 +16,7 @@ const { id, active } = Astro.props;
     <button class=`copy-button` type="button"
       ><Icons name="copy" /> Copy Punishment ID</button
     >
-    {
-      active && (
-        <button class="appeal-button" type="button">
-          <Icons name="gavel" /> Appeal
-        </button>
-      )
-    }
+    {active && <AppealButton {id} />}
   </menu>
 </div>
 
@@ -107,15 +102,5 @@ const { id, active } = Astro.props;
         menu.removeAttribute("open");
       }
     });
-
-    const appealButton = punishmentMenu.querySelector(
-      ".appeal-button"
-    ) as HTMLButtonElement;
-
-    appealButton &&
-      appealButton.addEventListener("click", () => {
-        sessionStorage.setItem("id", id);
-        location.assign("/appeal");
-      });
   }
 </script>
