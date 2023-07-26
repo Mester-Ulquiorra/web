@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const token = Astro.cookies.get("token").value;
 
-if (token === "") {
+if (!token) {
   return Astro.redirect("/login");
 }
 ---
