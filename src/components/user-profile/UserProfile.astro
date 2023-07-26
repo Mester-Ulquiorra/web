@@ -14,7 +14,7 @@ const { userId, avatar, userTag } = Astro.props;
 const logoutRoute = getAPIRoute("logout");
 ---
 
-<div>
+<user-profile>
   <UserInfo {userId} {userTag} {avatar} />
   <menu>
     <ServerLink />
@@ -22,25 +22,15 @@ const logoutRoute = getAPIRoute("logout");
       <button type="submit">Log out</button>
     </form>
   </menu>
-</div>
+</user-profile>
 
 <style>
-  div {
+  user-profile {
     display: inline-flex;
     gap: 0.5rem;
     position: relative;
     cursor: pointer;
     z-index: 4;
-
-    &:hover {
-      & menu {
-        visibility: visible;
-        opacity: 1;
-        top: 1.5rem;
-      }
-    }
-  }
-
   }
 
   button {
@@ -67,6 +57,12 @@ const logoutRoute = getAPIRoute("logout");
     border: var(--border);
     border-top: none;
     top: 0.5rem;
+
+    &[open] {
+      visibility: visible;
+      opacity: 1;
+      top: 1.5rem;
+    }
   }
 
   form {
@@ -81,3 +77,27 @@ const logoutRoute = getAPIRoute("logout");
     }
   }
 </style>
+
+<script>
+  class UserProfile extends HTMLElement {
+    constructor() {
+      super();
+      const menu = this.querySelector("menu");
+
+      if (window.matchMedia("max-width:768px")) {
+        this.addEventListener("click", () => {
+          menu?.toggleAttribute("open");
+        });
+      } else {
+        this.addEventListener("mouseover", () => {
+          menu?.setAttribute("open", "");
+        });
+        this.addEventListener("mouseout", () => {
+          menu?.removeAttribute("open");
+        });
+      }
+    }
+  }
+
+  customElements.define("user-profile", UserProfile);
+</script>
