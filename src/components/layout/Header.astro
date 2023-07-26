@@ -1,6 +1,6 @@
 ---
 import { getUserData } from "../../scripts/userData";
-import UserProfile from "./UserProfile.astro";
+import UserProfile from "../user-profile/UserProfile.astro";
 
 const token = Astro.cookies.get("token").value;
 const userData = token ? await getUserData(token) : null;
@@ -35,19 +35,3 @@ const { title } = Astro.props;
     border-bottom: var(--border);
   }
 </style>
-
-<script>
-  import { $toastText } from "../../scripts/stores";
-
-  const serverLinkButton = document.getElementById(
-    "server-link"
-  ) as HTMLButtonElement;
-  const serverLink = "https://discord.gg/MfmUFk5kbe";
-
-  serverLinkButton
-    ? serverLinkButton.addEventListener("click", () => {
-        navigator.clipboard.writeText(serverLink);
-        $toastText.set("Copied server link to clipboard");
-      })
-    : "";
-</script>

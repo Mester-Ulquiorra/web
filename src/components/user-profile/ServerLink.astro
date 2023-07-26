@@ -1,0 +1,31 @@
+<server-link-button type="button">Mester's Hub</server-link-button>
+
+<style>
+  server-link-button {
+    background-color: transparent;
+    padding: 0.5rem;
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+</style>
+
+<script>
+  import { $toastText } from "../../scripts/stores";
+
+  class ServerLinkButton extends HTMLButtonElement {
+    constructor() {
+      super();
+      const serverLink = "https://discord.gg/MfmUFk5kbe";
+
+      this.addEventListener("click", () => {
+        navigator.clipboard.writeText(serverLink);
+        $toastText.set("Copied server link to clipboard");
+      });
+    }
+  }
+
+  customElements.define("server-link-button", ServerLinkButton);
+</script>
