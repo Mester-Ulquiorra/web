@@ -8,9 +8,9 @@ interface Props {
 const { id } = Astro.props;
 ---
 
-<appeal-button data-id={id}>
-  <Icons name="gavel" /> Appeal
-</appeal-button>
+<copy-punishment-id type="button" data-id={id}
+  ><Icons name="copy" /> Copy Punishment ID</copy-punishment-id
+>
 
 <style>
   button {
@@ -29,17 +29,19 @@ const { id } = Astro.props;
 </style>
 
 <script>
-  class AppealButton extends HTMLElement {
+  import { $toastText } from "../../scripts/stores";
+
+  class CopyPunishmentId extends HTMLElement {
     constructor() {
       super();
       const id = this.dataset.id as string;
 
       this.addEventListener("click", () => {
-        sessionStorage.setItem("id", id);
-        location.assign("/appeal");
+        navigator.clipboard.writeText(id);
+        $toastText.set("Copied punishment ID to clipboard");
       });
     }
   }
 
-  customElements.define("appeal-button", AppealButton);
+  customElements.define("copy-punishment-id", CopyPunishmentId);
 </script>

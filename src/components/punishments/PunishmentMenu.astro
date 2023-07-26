@@ -1,6 +1,7 @@
 ---
 import Icons from "../Icons.astro";
 import AppealButton from "./AppealButton.astro";
+import CopyPunishmentId from "./CopyPunishmentId.astro";
 
 interface Props {
   id: string;
@@ -13,9 +14,7 @@ const { id, active } = Astro.props;
 <div class="punishment-menu" data-id={id}>
   <Icons name="menu" />
   <menu>
-    <button class=`copy-button` type="button"
-      ><Icons name="copy" /> Copy Punishment ID</button
-    >
+    <CopyPunishmentId {id} />
     {active && <AppealButton {id} />}
   </menu>
 </div>
@@ -55,20 +54,6 @@ const { id, active } = Astro.props;
       opacity: 1;
     }
   }
-
-  button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-
-    &:hover {
-      background-color: var(--primary);
-      color: var(--on-primary);
-    }
-  }
 </style>
 
 <script>
@@ -80,14 +65,6 @@ const { id, active } = Astro.props;
 
   for (const punishmentMenu of punishmentMenus) {
     const id = punishmentMenu.dataset.id as string;
-    const copyButton = punishmentMenu.querySelector(
-      `.copy-button`
-    ) as HTMLButtonElement;
-
-    copyButton.addEventListener("click", () => {
-      navigator.clipboard.writeText(id);
-      $toastText.set("Copied punishment ID to clipboard");
-    });
 
     const menu = punishmentMenu.querySelector("menu") as HTMLMenuElement;
     document.addEventListener("click", (e) => {
