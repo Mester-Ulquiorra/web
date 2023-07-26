@@ -31,10 +31,6 @@ const logoutRoute = getAPIRoute("logout");
     position: relative;
     cursor: pointer;
     z-index: 4;
-
-    &:hover :global(div) {
-      border-color: var(--text);
-    }
   }
 
   button {
@@ -86,20 +82,34 @@ const logoutRoute = getAPIRoute("logout");
   class UserProfile extends HTMLElement {
     constructor() {
       super();
-      const menu = this.querySelector("menu");
+      const menu = this.querySelector("menu") as HTMLMenuElement;
+      const userInfo = this.querySelector("div") as HTMLDivElement;
 
       if (window.matchMedia("(max-width:768px)").matches) {
-        this.addEventListener("click", () => {
-          menu?.toggleAttribute("open");
-        });
+        this.addEventListener("click", () => this.handleClick(menu, userInfo));
       } else {
-        this.addEventListener("mouseover", () => {
-          menu?.setAttribute("open", "");
-        });
-        this.addEventListener("mouseout", () => {
-          menu?.removeAttribute("open");
-        });
+        this.addEventListener("mouseover", () =>
+          this.handleMouseOver(menu, userInfo)
+        );
+        this.addEventListener("mouseout", () =>
+          this.handleMouseOut(menu, userInfo)
+        );
       }
+    }
+
+    handleClick(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
+      menu.toggleAttribute("open");
+      userInfo.style.borderColor = "var(--text)";
+    }
+
+    handleMouseOver(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
+      menu.setAttribute("open", "");
+      userInfo.style.borderColor = "var(--text)";
+    }
+
+    handleMouseOut(menu: HTMLMenuElement, userInfo: HTMLDivElement) {
+      menu.removeAttribute("open");
+      userInfo.style.borderColor = "transparent";
     }
   }
 
