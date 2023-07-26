@@ -31,6 +31,10 @@ const logoutRoute = getAPIRoute("logout");
     position: relative;
     cursor: pointer;
     z-index: 4;
+
+    &:hover :global(div) {
+      border-color: var(--text);
+    }
   }
 
   button {
