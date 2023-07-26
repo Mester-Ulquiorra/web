@@ -16,7 +16,7 @@ const { id, active } = Astro.props;
       ><Icons name="copy" /> Copy Punishment ID</button
     >
     {
-      active && (
+      !active && (
         <button class="appeal-button" type="button">
           <Icons name="gavel" /> Appeal
         </button>
