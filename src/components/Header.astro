@@ -1,5 +1,4 @@
 ---
-import LoginButton from "./LoginButton.astro";
 import Toast from "./Toast.astro";
 import { getUserData } from "../scripts/userData";
 import UserProfile from "./UserProfile.astro";
@@ -17,14 +16,12 @@ const { title } = Astro.props;
 <header>
   <h1>{title}</h1>
   {
-    userData ? (
+    userData && (
       <UserProfile
         userId={userData.userId}
         avatar={userData.avatar}
         userTag={userData.userTag}
       />
-    ) : (
-      <LoginButton />
     )
   }
 </header>

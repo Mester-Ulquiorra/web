@@ -5,6 +5,10 @@ import { getUserPunishments } from "../scripts/userData";
 
 const token = Astro.cookies.get("token").value;
 const userPunishments = token ? await getUserPunishments(token) : null;
+
+if (!token) {
+  return Astro.redirect("/login");
+}
 ---
 
 <BaseLayout title="Punishments">

@@ -1,27 +1,23 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import LoginLayout from "../layouts/LoginLayout.astro";
 ---
 
-<BaseLayout title="Login failed">
-  <main>
-    <h1>Login Failed!</h1>
-    <a href="/">Please try again</a>
-  </main>
-</BaseLayout>
+<LoginLayout title="Login failed">
+  <h1>Login Failed!</h1>
+  <a href="/login">Please try again</a>
+</LoginLayout>
 
 <style>
-  main {
-    display: grid;
-    place-items: center;
-    gap: 1rem;
+  h1 {
+    font-size: 3rem;
   }
 
   a {
     background: var(--primary);
-    color: var(--bg);
+    color: var(--on-primary);
     padding: 0.5rem;
     border-radius: var(--border-radius);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: bold;
     transition: var(--transition);
 

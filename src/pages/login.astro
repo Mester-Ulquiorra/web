@@ -1,0 +1,21 @@
+---
+import LoginButton from "../components/LoginButton.astro";
+import LoginLayout from "../layouts/LoginLayout.astro";
+
+const token = Astro.cookies.get("token").value;
+
+if (token) {
+  return Astro.redirect("/");
+}
+---
+
+<LoginLayout title="Login">
+  <h1>Welcome to Ulquiorra</h1>
+  <LoginButton />
+</LoginLayout>
+
+<style>
+  h1 {
+    font-size: 3rem;
+  }
+</style>

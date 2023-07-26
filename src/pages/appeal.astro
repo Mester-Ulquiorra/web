@@ -4,6 +4,10 @@ import { getAPIRoute } from "../scripts/functions";
 
 const token = Astro.cookies.get("token").value ?? "";
 const appealApiRoute = getAPIRoute("createAppeal");
+
+if (!token) {
+  return Astro.redirect("/login");
+}
 ---
 
 <BaseLayout title="Appeal">

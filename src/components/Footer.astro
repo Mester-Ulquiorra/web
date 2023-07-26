@@ -6,7 +6,7 @@ const token = Astro.cookies.get("token").value;
 const userData = token ? await getUserData(token) : null;
 ---
 
-{userData ? <footer>Last fetched: {localDate(userData.lastFetch)}</footer> : ""}
+{userData && <footer>Last fetched: {localDate(userData.lastFetch)}</footer>}
 
 <style>
   footer {
