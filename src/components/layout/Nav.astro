@@ -34,3 +34,14 @@ import Icons from "../Icons.astro";
     }
   }
 </style>
+
+<script>
+  const currentLocation = document.querySelector(
+    `a[href=${location.pathname}]`
+  ) as HTMLAnchorElement;
+
+  if (currentLocation) {
+    currentLocation.style.backgroundColor = "var(--primary)";
+    currentLocation.style.color = "var(--on-primary)";
+  }
+</script>
