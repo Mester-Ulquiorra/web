@@ -1,6 +1,8 @@
 ---
 import { getAPIRoute } from "../../scripts/functions";
 import ServerLink from "./ServerLink.astro";
+import UserInfo from "./UserInfo.astro";
+
 interface Props {
   userId: string;
   avatar: string;
@@ -13,18 +15,7 @@ const logoutRoute = getAPIRoute("logout");
 ---
 
 <div>
-  <div class="info">
-    {
-      avatar && (
-        <img
-          src={`https://media.discordapp.net/avatars/${userId}/${avatar}.png`}
-          alt="User avatar"
-        />
-      )
-    }
-
-    <p>{userTag}</p>
-  </div>
+  <UserInfo {userId} {userTag} {avatar} />
   <menu>
     <ServerLink />
     <form action={logoutRoute}>
@@ -42,10 +33,6 @@ const logoutRoute = getAPIRoute("logout");
     z-index: 4;
 
     &:hover {
-      & .info {
-        border-color: var(--text);
-      }
-
       & menu {
         visibility: visible;
         opacity: 1;
@@ -54,29 +41,6 @@ const logoutRoute = getAPIRoute("logout");
     }
   }
 
-  .info {
-    padding: 0.5rem;
-    border-radius: calc(var(--border-radius) * 1.5)
-      calc(var(--border-radius) * 1.5) 0 0;
-    border: var(--border);
-    border-color: transparent;
-    border-bottom: none;
-    transition: var(--transition);
-  }
-
-  img {
-    height: 1.75rem;
-    border-radius: 100vmax;
-  }
-
-  p {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  img,
-  p {
-    place-self: center;
   }
 
   button {
