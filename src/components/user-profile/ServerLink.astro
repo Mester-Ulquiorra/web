@@ -4,6 +4,7 @@
   server-link-button {
     background-color: transparent;
     padding: 0.5rem;
+    border-radius: 0.5rem;
 
     &:hover {
       background-color: var(--primary);
@@ -15,7 +16,7 @@
 <script>
   import { $toastText } from "../../scripts/stores";
 
-  class ServerLinkButton extends HTMLButtonElement {
+  class ServerLinkButton extends HTMLElement {
     constructor() {
       super();
       const serverLink = "https://discord.gg/MfmUFk5kbe";
