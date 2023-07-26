@@ -84,7 +84,7 @@ const logoutRoute = getAPIRoute("logout");
       super();
       const menu = this.querySelector("menu");
 
-      if (window.matchMedia("max-width:768px")) {
+      if (window.matchMedia("(max-width:768px)").matches) {
         this.addEventListener("click", () => {
           menu?.toggleAttribute("open");
         });
