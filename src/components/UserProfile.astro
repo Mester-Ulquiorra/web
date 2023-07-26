@@ -13,10 +13,15 @@ const logoutRoute = getAPIRoute("logout");
 
 <div>
   <div class="info">
-    <img
-      src={`https://media.discordapp.net/avatars/${userId}/${avatar}.png`}
-      alt="User avatar"
-    />
+    {
+      avatar && (
+        <img
+          src={`https://media.discordapp.net/avatars/${userId}/${avatar}.png`}
+          alt="User avatar"
+        />
+      )
+    }
+
     <p>{userTag}</p>
   </div>
   <menu>
