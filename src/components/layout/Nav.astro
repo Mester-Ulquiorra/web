@@ -38,12 +38,18 @@ import Icons from "../Icons.astro";
 </style>
 
 <script>
-  const currentLocation = document.querySelector(
-    `a[href="${location.pathname}"]`
-  ) as HTMLAnchorElement;
+  function selectCurrentPage() {
+    const currentLocation = document.querySelector(
+      `a[href="${location.pathname}"]`
+    ) as HTMLAnchorElement;
 
-  if (currentLocation) {
-    currentLocation.style.backgroundColor = "var(--primary)";
-    currentLocation.style.color = "var(--on-primary)";
+    if (currentLocation) {
+      currentLocation.style.backgroundColor = "var(--primary)";
+      currentLocation.style.color = "var(--on-primary)";
+    }
   }
+
+  selectCurrentPage()
+
+  document.addEventListener("astro:beforeload", selectCurrentPage)
 </script>
