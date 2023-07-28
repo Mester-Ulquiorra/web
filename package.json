@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^6.6.2",
-    "astro": "^2.9.3",
+    "astro": "^2.9.4",
     "nanostores": "^0.9.3"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
-    "wrangler": "^3.3.0"
+    "wrangler": "^3.4.0"
   }
 }
