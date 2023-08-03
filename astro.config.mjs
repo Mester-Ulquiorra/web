@@ -10,8 +10,5 @@ export default defineConfig({
   scopedStyleStrategy: "class",
   site: "https://ucp.mester.info",
   output: "server",
-  adapter: cloudflare(),
-  experimental: {
-    viewTransitions: true
-  }
+  adapter: cloudflare()
 });

@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import Head from "../components/layout/Head.astro";
 
 import "../styles/style.css";
@@ -15,7 +14,6 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <Head title={`${title} | Ulquiorra`} />
-    <ViewTransitions />
   </head>
   <body>
     <slot />
