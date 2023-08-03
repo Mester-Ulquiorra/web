@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^6.6.2",
-    "astro": "^2.9.7",
+    "astro": "^2.10.0",
     "nanostores": "^0.9.3"
   },
   "devDependencies": {
