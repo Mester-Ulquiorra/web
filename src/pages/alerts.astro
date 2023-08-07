@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getAPIRoute } from "../scripts/functions";
 
-const alertsRoute = getAPIRoute("ws").replace("https", "wss");
+const alertsRoute = getAPIRoute("ws");
 
 import "../styles/alerts.css";
 ---
