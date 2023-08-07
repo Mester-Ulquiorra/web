@@ -6,24 +6,22 @@ import type { UserData, UserPunishments } from "./types";
  * @param route the route to get 
  * @param token the token to use
  */
-function getAuthorisedRoute(route: APIRouteType, token: string) {
+async function getAuthorisedRoute(route: APIRouteType, token: string) {
   const url = new URL(getAPIRoute(route));
-  return fetch(url, {
-    headers: {
-      Authorization: token
-    }
-  })
-    .then(async response => {
-      if (!response.ok) {
-        throw new Error("Authentication failed");
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: token
       }
-      // return as json
-      return response.json();
-    })
-    .catch(error => {
-      console.error(error);
-      return null;
     });
+    if (!response.ok) {
+      throw new Error("Authentication failed");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
 export async function getUserData(token: string) {
