@@ -21,13 +21,7 @@ import "../styles/alerts.css";
 </style>
 
 <script>
-  interface Alert {
-    type: string;
-    data: {
-      status: "accepted" | "rejected";
-      reason: string;
-    };
-  }
+  import type { Alert } from "../scripts/types";
 
   const alertsMainElem = document.getElementById("alerts") as HTMLElement;
   const alertsRoute = alertsMainElem.dataset.route as string;

@@ -1,22 +1,5 @@
 import { getAPIRoute, APIRouteType } from "./functions";
-
-interface UserData {
-  userId: string;
-  avatar: string;
-  lastFetch: string;
-  userTag: string;
-}
-
-interface UserPunishments {
-  id: string;
-  type: number;
-  reason: string;
-  moderator: string;
-  at: number;
-  until: number;
-  active: boolean;
-  appealed: boolean;
-}
+import type { UserData, UserPunishments } from "./types";
 
 /**
  * Get the response of an authorised route
