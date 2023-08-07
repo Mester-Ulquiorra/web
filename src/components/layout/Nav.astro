@@ -5,6 +5,7 @@ import Icons from "../Icons.astro";
 <nav>
   <a href="/"><Icons name="home" /> Home</a>
   <a href="/punishments"><Icons name="hammer" /> Punishments</a>
+  <a href="/alerts"><Icons name="bell" />Alerts</a>
 </nav>
 
 <style>
@@ -49,7 +50,7 @@ import Icons from "../Icons.astro";
     }
   }
 
-  selectCurrentPage()
+  selectCurrentPage();
 
-  document.addEventListener("astro:beforeload", selectCurrentPage)
+  document.addEventListener("astro:beforeload", selectCurrentPage);
 </script>

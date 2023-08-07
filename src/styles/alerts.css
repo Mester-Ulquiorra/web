@@ -1,0 +1,41 @@
+@keyframes appear {
+    0% {
+        font-size: 0;
+        width: 0;
+    }
+
+    50% {
+        font-size: 0.25rem;
+    }
+
+    100% {
+        font-size: 1rem;
+        width: 100%;
+    }
+}
+
+.accepted {
+    background-color: #0f04;
+
+    &::before {
+        content: "Your appeal has been accepted: ";
+    }
+}
+
+.rejected {
+    background-color: #f00c;
+
+    &::before {
+        content: "Your appeal has been rejected: ";
+    }
+}
+
+.accepted,
+.rejected {
+    display: grid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    animation: appear 0.25s;
+    place-self: center;
+    width: 100%;
+}

@@ -23,6 +23,7 @@ const APIRoutes = {
   punishments: "/user/punishments",
   createAppeal: "/user/create-appeal",
   logout: "/user/logout",
+  ws: "/ws"
 };
 
 export type APIRouteType = keyof typeof APIRoutes;

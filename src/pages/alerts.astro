@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getAPIRoute } from "../scripts/functions";
+
+const alertsRoute = getAPIRoute("ws").replace("https", "wss");
+
+import "../styles/alerts.css";
+---
+
+<BaseLayout title="Alerts">
+  <main id="alerts" data-route={alertsRoute}></main>
+</BaseLayout>
+
+<style>
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+    grid-auto-rows: min-content;
+    grid-gap: 1rem;
+  }
+</style>
+
+<script>
+  interface Alert {
+    type: string;
+    data: {
+      status: "accepted" | "rejected";
+      reason: string;
+    };
+  }
+
+  const alertsMainElem = document.getElementById("alerts") as HTMLElement;
+  const alertsRoute = alertsMainElem.dataset.route as string;
+
+  const ws = new WebSocket(alertsRoute);
+
+  const alertHistory = JSON.parse(
+    localStorage.getItem("alertHistory") ?? "[]"
+  ) as Alert[];
+
+  alertHistory.length > 0 &&
+    alertHistory.map((alert) => {
+      const alertElement = document.createElement("div");
+      alertElement.className = alert.data.status;
+      alertElement.innerHTML = alert.data.reason;
+
+      alertsMainElem.prepend(alertElement);
+    });
+
+  ws.onmessage = (m) => {
+    if (["ping", "welcome"].includes(m.data)) return;
+
+    const alert = JSON.parse(m.data) as Alert;
+
+    alertHistory.push(alert);
+    localStorage.setItem("alertHistory", JSON.stringify(alertHistory));
+
+    const alertElement = document.createElement("div");
+    alertElement.className = alert.data.status;
+    alertElement.innerHTML = alert.data.reason;
+
+    alertsMainElem.prepend(alertElement);
+  };
+</script>
