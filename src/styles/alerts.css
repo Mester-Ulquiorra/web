@@ -15,7 +15,7 @@
 }
 
 .accepted {
-    background-color: #0f04;
+    background-color: #168965;
 
     &::before {
         content: "Your appeal has been accepted: ";
@@ -23,7 +23,7 @@
 }
 
 .rejected {
-    background-color: #f00c;
+    background-color: #ed3824;
 
     &::before {
         content: "Your appeal has been rejected: ";
