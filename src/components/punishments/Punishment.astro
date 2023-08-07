@@ -28,10 +28,10 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
 ---
 
 <div class:list={["punishment", active ? "active" : ""]} data-id={id}>
-  <p><b>Type:</b>{types[type]}</p>
-  <p><b>Reason:</b>{reason}</p>
-  <p><b>Moderator:</b>{moderator}</p>
-  <p><b>At:</b>{atString}</p>
+  <p><b>Type:</b><span>{types[type]}</span></p>
+  <p><b>Reason:</b><span>{reason}</span></p>
+  <p><b>Moderator:</b><span>{moderator}</span></p>
+  <p><b>At:</b><span>{atString}</span></p>
   {
     untilString !== "" ? (
       <p>
@@ -56,7 +56,6 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
     border: var(--border);
     transition: var(--transition);
     position: relative;
-    height: fit-content;
 
     &:not(.active) {
       opacity: 50%;
@@ -64,8 +63,13 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
   }
 
   p {
-    hyphens: auto;
     display: inline-flex;
+  }
+  
+  span {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    overflow-wrap: anywhere;
   }
 
   b {

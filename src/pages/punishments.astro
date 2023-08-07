@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getUserPunishments } from "../scripts/userData";
 
 const token = Astro.cookies.get("token").value;
+
 const userPunishments = token ? await getUserPunishments(token) : null;
 
 if (!token) {
@@ -33,11 +34,7 @@ if (!token) {
   main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
-    grid-template-rows: min-content;
+    grid-auto-rows: min-content;
     grid-gap: 1rem;
-
-    @media (max-width: 768px) {
-      grid-template-columns: initial;
-    }
   }
 </style>
