@@ -31,8 +31,4 @@ The licenses of dependencies are in their respective folders in `node_modules/` 
 
 The Discord icon comes from [SVG Logos](https://github.com/gilbarbara/logos) and is licensed under the [CC0 license](https://github.com/gilbarbara/logos/blob/main/LICENSE.txt).
 
-The home, copy and bell icons come from [Octicons](https://github.com/primer/octicons/) and are licensed under the [MIT license](https://github.com/primer/octicons/blob/main/LICENSE).
-
-The hammer and menu icons come from [Material Design Icons](https://github.com/Templarian/MaterialDesign) and are licensed under the [Apache 2.0 license](https://github.com/Templarian/MaterialDesign/blob/master/LICENSE).
-
-The gavel icon comes from [Material Symbols](https://github.com/google/material-design-icons) and is licensed under the [Apache 2.0 license](https://github.com/google/material-design-icons/blob/master/LICENSE).
+The bell, copy, gavel, hammer, home and menu icons come from [Material Design Icons](https://github.com/Templarian/MaterialDesign) and are licensed under the [Apache 2.0 license](https://github.com/Templarian/MaterialDesign/blob/master/LICENSE).
