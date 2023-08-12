@@ -10,9 +10,10 @@ interface Props {
   at: number;
   until: number;
   active: boolean;
+  appealed: boolean;
 }
 
-const { id, type, reason, moderator, at, until, active } = Astro.props;
+const { id, type, reason, moderator, at, until, active, appealed } = Astro.props;
 
 let untilString = "";
 const atString = localDate(at);
@@ -42,7 +43,7 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
       ""
     )
   }
-  <PunishmentMenu {id} {active} />
+  <PunishmentMenu {id} {active} {appealed} />
 </div>
 
 <style>

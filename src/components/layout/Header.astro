@@ -47,7 +47,11 @@ const { title } = Astro.props;
 
 <script>
   import { $toastText } from "../../scripts/stores";
-  import type { Alert } from "../../scripts/types";
+  import {
+    isAppealAlert,
+    type Alert,
+    type AlertType,
+  } from "../../scripts/types";
 
   // setup the websocket responsible for polling real-time data only when we're not already on the alerts page
   if (location.pathname !== "/alerts") {
@@ -56,19 +60,29 @@ const { title } = Astro.props;
     const wsRoute = header.dataset.wsroute;
     const token = header.dataset.token;
 
-    if(wsRoute && token) {
+    if (wsRoute && token) {
       const wsURL = new URL(wsRoute);
       wsURL.searchParams.append("token", token);
       const ws = new WebSocket(wsURL);
+
       ws.onmessage = (msg: MessageEvent<string>) => {
-        if(msg.data === "ping" || msg.data.startsWith("welcome")) return;
+        if (msg.data === "ping" || msg.data.startsWith("welcome")) return;
 
-        const message = JSON.parse(msg.data) as Alert;
+        const alert = JSON.parse(msg.data) as Alert<AlertType>;
 
-        // TODO: do something more productive with it
-        $toastText.set(message.data.reason);
-      }
+        const alertHistory = JSON.parse(
+          localStorage.getItem("alertHistory") ?? "[]"
+        ) as Alert<AlertType>[];
+
+        alertHistory.push(alert);
+        localStorage.setItem("alertHistory", JSON.stringify(alertHistory));
+
+        if (isAppealAlert(alert)) {
+          $toastText.set(
+            `Your ${alert.type} has been ${alert.data.status}: ${alert.data.reason}!`
+          );
+        }
+      };
     }
-
   }
 </script>
