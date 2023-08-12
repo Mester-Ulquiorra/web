@@ -10,12 +10,27 @@ if (!token) {
 
 <BaseLayout>
   <main>
+    <h1>Welcome to Ulquiorra UCP</h1>
     <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero totam
-      dolorem sint a placeat. Odio, debitis non perferendis optio asperiores
-      impedit amet doloremque expedita consectetur et ullam aliquid quibusdam
-      omnis!
+      The UCP (User Control Panel) is a web interface designed for members of
+      the <b>Mester's Hub</b> Discord server to control and overview their data associated
+      with the Discord server.
     </p>
+    <p>
+      It is currently in Beta, so if you think something is missing, it's
+      probably being worked on - but make sure to send a suggestion in the
+      Discord server, we would love to hear your feedback!
+    </p>
+    <p>You can:</p>
+    <ul>
+      <li>view your present and past punishments,</li>
+      <li>appeal an active punishment if you think it was unfair,</li>
+      <li>
+        get real-time notifications when your appeal has been accepted/rejected
+        by a staff member,
+      </li>
+      <li>and so much more coming later!</li>
+    </ul>
   </main>
 </BaseLayout>
 
@@ -26,19 +41,13 @@ if (!token) {
     grid-gap: 1rem;
   }
 
-  a {
-    background-color: var(--bg);
-    height: max-content;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
-    font-size: 1.25rem;
-    font-weight: bold;
-    border: var(--border);
+  p,
+  li {
+    line-height: 1.5rem;
+    text-align: justify;
+  }
 
-    &:hover {
-      background-color: var(--primary);
-      color: var(--on-primary);
-    }
+  ul {
+    padding-left: 1.5rem;
   }
 </style>

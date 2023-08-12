@@ -35,7 +35,7 @@ export type APIRouteType = keyof typeof APIRoutes;
  */
 export function getAPIRoute(route: APIRouteType) {
   let url = APIBase + APIRoutes[ route ];
-  if(route === "ws") {
+  if (route === "ws") {
     url = url.replace(/https?/, process.env.DEV_MESTER === "sure" ? "ws" : "wss");
   }
   // add a ?test=true at the end if NODE_ENV is development

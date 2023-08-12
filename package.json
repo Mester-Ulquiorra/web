@@ -11,12 +11,12 @@
     "update": "rm -rf node_modules && rm -f bun.lockb && ncu -u && bun install"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^6.6.2",
-    "astro": "^2.10.3",
+    "@astrojs/cloudflare": "^6.8.0",
+    "astro": "^2.10.7",
     "nanostores": "^0.9.3"
   },
   "devDependencies": {
-    "@types/node": "^20.4.9",
+    "@types/node": "^20.4.10",
     "wrangler": "^3.5.0"
   }
 }
