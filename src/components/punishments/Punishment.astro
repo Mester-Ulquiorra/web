@@ -1,4 +1,5 @@
 ---
+import { PunishmentTypes } from "../../scripts/api";
 import { localDate } from "../../scripts/functions";
 import PunishmentMenu from "./PunishmentMenu.astro";
 
@@ -17,9 +18,8 @@ const { id, type, reason, moderator, at, until, active, appealed } = Astro.props
 
 let untilString = "";
 const atString = localDate(at);
-const types = ["Warning", "Mute", "Kick", "Ban"];
 
-if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
+if ((PunishmentTypes[type] === "Mute" || PunishmentTypes[type] === "Ban") && until === -1) {
   if (active === true) {
     untilString = "Permanent";
   }
@@ -29,7 +29,7 @@ if ((types[type] === "Mute" || types[type] === "Ban") && until === -1) {
 ---
 
 <div class:list={["punishment", active ? "active" : ""]} data-id={id}>
-  <p><b>Type:</b><span>{types[type]}</span></p>
+  <p><b>Type:</b><span>{PunishmentTypes[type]}</span></p>
   <p><b>Reason:</b><span>{reason}</span></p>
   <p><b>Moderator:</b><span>{moderator}</span></p>
   <p><b>At:</b><span>{atString}</span></p>

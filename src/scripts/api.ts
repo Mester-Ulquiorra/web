@@ -9,16 +9,25 @@ const APIBase = process.env.DEV_MESTER === "sure" ? "http://localhost:5657" : "h
  * This is only the path, the base is defined above
  */
 const APIRoutes = {
-    hello: "/",
-    auth: "/auth",
-    user: "/user",
-    punishments: "/user/punishments",
-    createAppeal: "/user/create-appeal",
-    logout: "/user/logout",
-    ws: "/ws"
+  hello: "/",
+  auth: "/auth",
+  user: "/user",
+  punishments: "/user/punishments",
+  createAppeal: "/user/create-appeal",
+  logout: "/user/logout",
+  ws: "/ws",
 };
 
 export type APIRouteType = keyof typeof APIRoutes;
+
+/**
+ * The punishment types, the <const> was added before the array for better TypeScript autocompletion
+ */
+export const PunishmentTypes = <const>["Warning", "Mute", "Kick", "Ban"];
+/**
+ * The punishment types formatted to be used in English sentences (example: you've been muted)
+ */
+export const FormattedPunishmentTypes = <const>["warned", "muted", "kicked", "banned"];
 
 /**
  * Gets the full API route with the base
@@ -26,13 +35,13 @@ export type APIRouteType = keyof typeof APIRoutes;
  * @returns The full API route with the base
  */
 export function getAPIRoute(route: APIRouteType) {
-    let url = APIBase + APIRoutes[route];
-    if (route === "ws") {
-        url = url.replace(/https?/, process.env.DEV_MESTER === "sure" ? "ws" : "wss");
-    }
-    // add a ?test=true at the end if NODE_ENV is development
-    if (process.env.NODE_ENV === "development") {
-        return url + "?test=true";
-    }
-    return url;
+  let url = APIBase + APIRoutes[route];
+  if (route === "ws") {
+    url = url.replace(/https?/, process.env.DEV_MESTER === "sure" ? "ws" : "wss");
+  }
+  // add a ?test=true at the end if NODE_ENV is development
+  if (process.env.NODE_ENV === "development") {
+    return url + "?test=true";
+  }
+  return url;
 }
