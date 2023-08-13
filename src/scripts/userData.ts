@@ -1,5 +1,23 @@
+import type { Alert, AlertType } from "./alerts";
 import { getAPIRoute, APIRouteType } from "./api";
-import type { UserData, UserPunishments } from "./functions";
+
+interface UserData {
+  userId: string;
+  avatar: string;
+  lastFetch: string;
+  userTag: string;
+  alerts: Alert<AlertType>[];
+}
+interface UserPunishments {
+  id: string;
+  type: number;
+  reason: string;
+  moderator: string;
+  at: number;
+  until: number;
+  active: boolean;
+  appealed: boolean;
+}
 
 /**
  * Get the response of an authorised route
