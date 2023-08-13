@@ -1,4 +1,5 @@
 import { capitalise } from "./functions";
+import type { UserPunishments } from "./userData";
 
 export type AlertType = "appeal" | "punishment";
 
@@ -8,17 +9,7 @@ type AlertData<T extends AlertType> = T extends "appeal"
       reason: string;
     }
   : T extends "punishment"
-  ? {
-      punishmentId: string;
-      user: string;
-      mod: string;
-      type: number;
-      reason: string;
-      at: number;
-      until: number;
-      active: boolean;
-      appealed: boolean;
-    }
+  ? UserPunishments
   : never;
 
 export interface Alert<T extends AlertType> {
