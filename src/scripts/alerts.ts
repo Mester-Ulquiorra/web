@@ -28,16 +28,16 @@ export interface Alert<T extends AlertType> {
 export function createAlert(alert: Alert<AlertType>, alertsMainElem: HTMLElement) {
   const alertElement = document.createElement("div");
   if (isAppealAlert(alert)) {
-    alertElement.dataset.status = alert.data.status; // Getting an error here on `alert.data.status`
+    alertElement.dataset.status = alert.data.status;
   }
 
   if (isPunishmentAlert(alert)) {
-    alertElement.dataset.active = String(alert.data.active); // Getting an error here on `alert.data.active`
+    alertElement.dataset.active = String(alert.data.active);
   }
 
   alertElement.innerHTML = `<h3>Type: ${capitalise(alert.type)}</h3><p>${
     isAppealAlert(alert)
-      ? `Your appeal has been ${alert.data.status}: ` // Getting an error here on `alert.data.status`
+      ? `Your appeal has been ${alert.data.status}: `
       : ""
   }</p><p>Reason: ${alert.data.reason}</p>`;
 
