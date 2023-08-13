@@ -17,7 +17,7 @@ type AlertData<T extends AlertType> = T extends "appeal"
       at: number;
       until: number;
       active: boolean;
-      appealed: false;
+      appealed: boolean;
     }
   : never;
 
