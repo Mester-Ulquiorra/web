@@ -21,7 +21,7 @@ import "../styles/alerts.css";
 </style>
 
 <script>
-  import { type Alert, type AlertType, isAppealAlert } from "../scripts/types";
+  import type { Alert, AlertType } from "../scripts/types";
 
   const alertsMainElem = document.getElementById("alerts") as HTMLElement;
   const alertsRoute = alertsMainElem.dataset.route as string;
@@ -51,7 +51,7 @@ import "../styles/alerts.css";
 
     const alertElement = document.createElement("div");
 
-    if (isAppealAlert(alert)) {
+    if (alert.type === "appeal") {
       // using className like this will work for now, but with more alert types it'll become spaghetti code
       alertElement.className = alert.data.status;
       alertElement.innerHTML = alert.data.reason;

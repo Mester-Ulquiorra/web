@@ -31,7 +31,3 @@ export interface Alert<T extends AlertType> {
   type: T;
   data: AlertData<T>;
 }
-
-export function isAppealAlert(alert: Alert<AlertType>): alert is Alert<"appeal"> {
-  return alert.type === "appeal";
-}
