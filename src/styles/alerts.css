@@ -14,28 +14,29 @@
     }
 }
 
-.accepted {
+[data-status="accepted"] {
     background-color: #168965;
-
-    &::before {
-        content: "Your appeal has been accepted: ";
-    }
 }
 
-.rejected {
+[data-status="rejected"] {
     background-color: #ed3824;
-
-    &::before {
-        content: "Your appeal has been rejected: ";
-    }
 }
 
-.accepted,
-.rejected {
+[data-active] {
+    border: var(--border);
+}
+
+[data-active="false"] {
+    opacity: 50%;
+}
+
+[data-status],
+[data-active] {
     display: grid;
     padding: 1rem;
     border-radius: 0.5rem;
     animation: appear 0.25s;
     place-self: center;
     width: 100%;
+    height: 100%;
 }

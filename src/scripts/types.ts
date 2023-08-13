@@ -18,14 +18,24 @@ export interface UserPunishments {
 }
 
 // currently only appeal exists, but maybe more in the future
-export type AlertType = "appeal";
+export type AlertType = "appeal" | "punishment";
 
 type AlertData<T extends AlertType> = T extends "appeal"
   ? {
-      status: "accepted" | "rejected";
-      reason: string;
-    }
-  : never;
+    status: "accepted" | "rejected";
+    reason: string;
+  }
+  : T extends "punishment" ? {
+    punishmentId: string,
+    user: string;
+    mod: string;
+    type: number;
+    reason: string;
+    at: number;
+    until: number;
+    active: boolean;
+    appealed: false;
+  } : never;
 
 export interface Alert<T extends AlertType> {
   type: T;
