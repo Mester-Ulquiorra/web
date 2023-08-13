@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getAPIRoute } from "../scripts/functions";
+import { getAPIRoute } from "../scripts/api";
 
 const alertsRoute = getAPIRoute("ws");
 
@@ -27,7 +27,8 @@ if (!token) {
 </style>
 
 <script>
-  import type { Alert, AlertType } from "../scripts/types";
+  import type { Alert, AlertType } from "../scripts/alerts";
+  import { createAlert } from "../scripts/alerts";
 
   const alertsMainElem = document.getElementById("alerts") as HTMLElement;
   const alertsRoute = alertsMainElem.dataset.route as string;
@@ -38,14 +39,11 @@ if (!token) {
     localStorage.getItem("alertHistory") ?? "[]"
   ) as Alert<AlertType>[];
 
-  alertHistory.length > 0 &&
-    alertHistory.map((alert) => {
-      const alertElement = document.createElement("div");
-      alertElement.className = alert.data.status;
-      alertElement.innerHTML = alert.data.reason;
-
-      alertsMainElem.prepend(alertElement);
-    });
+  if (alertHistory.length > 0) {
+    for (const alert of alertHistory) {
+      createAlert(alert, alertsMainElem);
+    }
+  }
 
   ws.onmessage = (msg: MessageEvent<string>) => {
     if (msg.data === "ping" || msg.data.startsWith("welcome")) return;
@@ -55,16 +53,6 @@ if (!token) {
     alertHistory.push(alert);
     localStorage.setItem("alertHistory", JSON.stringify(alertHistory));
 
-    const alertElement = document.createElement("div");
-
-    if (alert.type === "appeal") {
-      // using className like this will work for now, but with more alert types it'll become spaghetti code
-      alertElement.className = alert.data.status;
-      alertElement.innerHTML = alert.data.reason;
-    }
-
-    // when we have more alert types, we can add more cases here
-
-    alertsMainElem.prepend(alertElement);
+    createAlert(alert, alertsMainElem);
   };
 </script>
