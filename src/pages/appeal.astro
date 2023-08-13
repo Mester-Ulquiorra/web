@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getAPIRoute } from "../scripts/functions";
+import { getAPIRoute } from "../scripts/api";
 
 const token = Astro.cookies.get("token").value ?? "";
 const appealApiRoute = getAPIRoute("createAppeal");

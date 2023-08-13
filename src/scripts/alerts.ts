@@ -1,7 +1,27 @@
-import type { Alert, AlertType } from "./types";
+import { capitalise } from "./functions";
 
-function capitalise(text: string) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+export type AlertType = "appeal" | "punishment";
+
+type AlertData<T extends AlertType> = T extends "appeal"
+    ? {
+        status: "accepted" | "rejected";
+        reason: string;
+    }
+    : T extends "punishment" ? {
+        punishmentId: string,
+        user: string;
+        mod: string;
+        type: number;
+        reason: string;
+        at: number;
+        until: number;
+        active: boolean;
+        appealed: false;
+    } : never;
+
+export interface Alert<T extends AlertType> {
+    type: T;
+    data: AlertData<T>;
 }
 export function createAlert(alert: Alert<AlertType>, alertsMainElem: HTMLElement) {
     console.log(typeof alert);

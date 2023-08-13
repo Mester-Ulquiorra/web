@@ -1,5 +1,5 @@
-import { getAPIRoute, APIRouteType } from "./functions";
-import type { UserData, UserPunishments } from "./types";
+import { getAPIRoute, APIRouteType } from "./api";
+import type { UserData, UserPunishments } from "./functions";
 
 /**
  * Get the response of an authorised route

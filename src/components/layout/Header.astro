@@ -1,5 +1,5 @@
 ---
-import { getAPIRoute } from "../../scripts/functions";
+import { getAPIRoute } from "../../scripts/api";
 import { getUserData } from "../../scripts/userData";
 import UserProfile from "../user-profile/UserProfile.astro";
 
@@ -47,7 +47,7 @@ const { title } = Astro.props;
 
 <script>
   import { $toastText } from "../../scripts/stores";
-  import type { Alert, AlertType } from "../../scripts/types";
+  import type { Alert, AlertType } from "../../scripts/alerts";
 
   // setup the websocket responsible for polling real-time data only when we're not already on the alerts page
   if (location.pathname !== "/alerts") {
@@ -75,7 +75,7 @@ const { title } = Astro.props;
 
         if (alert.type === "appeal") {
           $toastText.set(
-            `Your ${alert.type} has been ${alert.data.status}: ${alert.data.reason}!`
+            `Your ${alert.type} has been ${alert.data.status || alert.data.active}: ${alert.data.reason}!` // Gives an error on `alert.data.status` and `alert.data.active`
           );
         }
       };

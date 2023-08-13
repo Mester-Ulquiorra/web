@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getAPIRoute } from "../scripts/functions";
+import { getAPIRoute } from "../scripts/api";
 
 const alertsRoute = getAPIRoute("ws");
 
@@ -27,7 +27,7 @@ if (!token) {
 </style>
 
 <script>
-  import type { Alert, AlertType } from "../scripts/types";
+  import type { Alert, AlertType } from "../scripts/alerts";
   import { createAlert } from "../scripts/alerts";
 
   const alertsMainElem = document.getElementById("alerts") as HTMLElement;
