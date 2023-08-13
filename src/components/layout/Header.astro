@@ -47,11 +47,7 @@ const { title } = Astro.props;
 
 <script>
   import { $toastText } from "../../scripts/stores";
-  import {
-    isAppealAlert,
-    type Alert,
-    type AlertType,
-  } from "../../scripts/types";
+  import type { Alert, AlertType } from "../../scripts/types";
 
   // setup the websocket responsible for polling real-time data only when we're not already on the alerts page
   if (location.pathname !== "/alerts") {
@@ -77,7 +73,7 @@ const { title } = Astro.props;
         alertHistory.push(alert);
         localStorage.setItem("alertHistory", JSON.stringify(alertHistory));
 
-        if (isAppealAlert(alert)) {
+        if (alert.type === "appeal") {
           $toastText.set(
             `Your ${alert.type} has been ${alert.data.status}: ${alert.data.reason}!`
           );
