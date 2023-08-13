@@ -8,11 +8,12 @@ interface UserData {
   userTag: string;
   alerts: Alert<AlertType>[];
 }
-interface UserPunishments {
-  id: string;
+export interface UserPunishments {
+  punishmentId: string;
+  user: string;
+  mod: string;
   type: number;
   reason: string;
-  moderator: string;
   at: number;
   until: number;
   active: boolean;
