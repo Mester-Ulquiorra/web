@@ -26,7 +26,6 @@ export interface Alert<T extends AlertType> {
   data: AlertData<T>;
 }
 export function createAlert(alert: Alert<AlertType>, alertsMainElem: HTMLElement) {
-  console.log(typeof alert);
   const alertElement = document.createElement("div");
   if (isAppealAlert(alert)) {
     alertElement.dataset.status = alert.data.status; // Getting an error here on `alert.data.status`
