@@ -112,8 +112,11 @@ if (!token) {
           $toastText.set("Error: Something went wrong");
           throw new Error("Network response was not ok");
         }
+        
         $toastText.set("Success! Your appeal has been sent");
-        location.replace("/punishments");
+        setTimeout(() => {
+          location.replace("/punishments");
+        }, 2500); // delay the redirect so the user can see the toast
       })
       .catch((error) => {
         console.error("Error:", error);

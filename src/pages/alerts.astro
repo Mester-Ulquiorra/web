@@ -21,7 +21,7 @@ import "../styles/alerts.css";
 </style>
 
 <script>
-  import type { Alert } from "../scripts/types";
+  import type { Alert, AlertType } from "../scripts/types";
 
   const alertsMainElem = document.getElementById("alerts") as HTMLElement;
   const alertsRoute = alertsMainElem.dataset.route as string;
@@ -30,7 +30,7 @@ import "../styles/alerts.css";
 
   const alertHistory = JSON.parse(
     localStorage.getItem("alertHistory") ?? "[]"
-  ) as Alert[];
+  ) as Alert<AlertType>[];
 
   alertHistory.length > 0 &&
     alertHistory.map((alert) => {
@@ -41,17 +41,23 @@ import "../styles/alerts.css";
       alertsMainElem.prepend(alertElement);
     });
 
-  ws.onmessage = (m) => {
-    if (["ping", "welcome"].includes(m.data)) return;
+  ws.onmessage = (msg: MessageEvent<string>) => {
+    if (msg.data === "ping" || msg.data.startsWith("welcome")) return;
 
-    const alert = JSON.parse(m.data) as Alert;
+    const alert = JSON.parse(msg.data) as Alert<AlertType>;
 
     alertHistory.push(alert);
     localStorage.setItem("alertHistory", JSON.stringify(alertHistory));
 
     const alertElement = document.createElement("div");
-    alertElement.className = alert.data.status;
-    alertElement.innerHTML = alert.data.reason;
+
+    if (alert.type === "appeal") {
+      // using className like this will work for now, but with more alert types it'll become spaghetti code
+      alertElement.className = alert.data.status;
+      alertElement.innerHTML = alert.data.reason;
+    }
+
+    // when we have more alert types, we can add more cases here
 
     alertsMainElem.prepend(alertElement);
   };

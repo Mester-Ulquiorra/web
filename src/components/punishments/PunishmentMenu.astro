@@ -6,16 +6,17 @@ import CopyPunishmentId from "./CopyPunishmentId.astro";
 interface Props {
   id: string;
   active: boolean;
+  appealed: boolean;
 }
 
-const { id, active } = Astro.props;
+const { id, active, appealed } = Astro.props;
 ---
 
 <punishment-menu data-id={id}>
   <Icons name="menu" />
   <menu>
     <CopyPunishmentId {id} />
-    {active && <AppealButton {id} />}
+    {active && !appealed && <AppealButton {id} />}
   </menu>
 </punishment-menu>
 

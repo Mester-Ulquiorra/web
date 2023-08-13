@@ -14,7 +14,7 @@ $toastText.listen((text) => {
   setTimeout(() => {
     toast.style.visibility = "hidden";
     toast.style.opacity = "0";
-  }, 1500);
+  }, 4000);
 
   $toastText.set("");
 });
