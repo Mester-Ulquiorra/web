@@ -5,6 +5,12 @@ import { getAPIRoute } from "../scripts/functions";
 const alertsRoute = getAPIRoute("ws");
 
 import "../styles/alerts.css";
+
+const token = Astro.cookies.get("token").value ?? "";
+
+if (!token) {
+  return Astro.redirect("/login");
+}
 ---
 
 <BaseLayout title="Alerts">
