@@ -14,7 +14,7 @@
     "@astrojs/cloudflare": "^6.8.0",
     "astro": "^2.10.7",
     "nanostores": "^0.9.3",
-    "scss": "^0.2.4"
+    "sass": "^1.65.1"
   },
   "devDependencies": {
     "@types/node": "^20.5.0",
