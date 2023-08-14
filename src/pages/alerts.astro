@@ -4,7 +4,7 @@ import { getAPIRoute } from "../scripts/api";
 
 const alertsRoute = getAPIRoute("ws");
 
-import "../styles/alerts.css";
+import "../styles/alerts.scss";
 
 const token = Astro.cookies.get("token").value ?? "";
 
