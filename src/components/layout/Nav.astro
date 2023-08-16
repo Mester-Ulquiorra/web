@@ -18,14 +18,18 @@ const userData = token ? await getUserData(token) : null;
 
 <style lang="scss">
   nav {
+    padding: 1rem;;
     display: grid;
     grid-auto-rows: min-content;
     align-items: center;
     overflow: auto;
     gap: 1rem;
     width: fit-content;
+    border-right: var(--border);
 
     @media (max-width: 768px) {
+      border-right: none;
+      border-top: var(--border);
       order: 1;
       grid-auto-flow: column;
       width: 100%;
