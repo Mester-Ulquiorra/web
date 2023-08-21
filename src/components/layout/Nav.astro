@@ -1,5 +1,5 @@
 ---
-import Icons from "../Icons.astro";
+import { Icon } from "astro-icon";
 import { getUserData } from "../../scripts/userData";
 
 const token = Astro.cookies.get("token").value;
@@ -7,10 +7,10 @@ const userData = token ? await getUserData(token) : null;
 ---
 
 <nav>
-  <a href="/"><Icons name="home" /> Home</a>
-  <a href="/punishments"><Icons name="hammer" /> Punishments</a>
+  <a href="/"><Icon name="mdi:home" /> Home</a>
+  <a href="/punishments"><Icon name="mdi:hammer" /> Punishments</a>
   <a href="/alerts"
-    ><Icons name="bell" />Alerts<span id="unread"
+    ><Icon name="mdi:bell" />Alerts<span id="unread"
       >{userData?.alerts.length}</span
     ></a
   >
@@ -54,6 +54,10 @@ const userData = token ? await getUserData(token) : null;
     position: absolute;
     right: 2rem;
     top: 0.5rem;
+  }
+
+  [astro-icon] {
+    height: 1.5rem;
   }
 </style>
 

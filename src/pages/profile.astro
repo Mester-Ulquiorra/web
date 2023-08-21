@@ -1,0 +1,44 @@
+---
+import Icons from "../components/Icons.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getUserData } from "../scripts/userData";
+
+const token = Astro.cookies.get("token").value;
+const userData = token ? await getUserData(token) : null;
+
+// if (!token) {
+//     return Astro.redirect("/login");
+// }
+---
+
+<BaseLayout title="Profile">
+  <main>
+    {
+      userData?.avatar && (
+        <img
+          src={`https://media.discordapp.net/avatars/${userData.userId}/${userData.avatar}.png`}
+          alt={userData.userTag}
+        />
+      )
+    }
+    <h2>{userData?.userTag}</h2>
+
+    <!-- Remove these -->
+    <img src="https://picsum.photos/seed/phirkabhi/256" alt="PHIR KABHI">
+    <h1>noClaps</h1>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    img {
+        width: 25vmin;
+        border-radius: calc(var(--border-radius) * 4);
+    }
+</style>

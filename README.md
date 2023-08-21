@@ -28,7 +28,3 @@ All of the code in this repository is under the [0BSD license](./LICENSE), unles
 The licenses of dependencies are in their respective folders in `node_modules/` when you install them with `bun install`.
 
 [Astro](https://astro.build), the site generator used to build this site, is licensed under the [MIT license](https://github.com/withastro/astro/blob/main/LICENSE).
-
-The Discord icon comes from [SVG Logos](https://github.com/gilbarbara/logos) and is licensed under the [CC0 license](https://github.com/gilbarbara/logos/blob/main/LICENSE.txt).
-
-The bell, copy, gavel, hammer, home and menu icons come from [Material Design Icons](https://github.com/Templarian/MaterialDesign) and are licensed under the [Apache 2.0 license](https://github.com/Templarian/MaterialDesign/blob/master/LICENSE).
