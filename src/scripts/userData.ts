@@ -20,6 +20,15 @@ export interface UserPunishments {
   appealed: boolean;
 }
 
+interface UserProfile {
+  firstJoin: number;
+  lastJoin: number;
+  mod: string;
+  xp: number;
+  lbPos: number;
+  level: number;
+}
+
 /**
  * Get the response of an authorised route
  * @param route the route to get
@@ -50,5 +59,10 @@ export async function getUserData(token: string) {
 
 export async function getUserPunishments(token: string) {
   const response = (await getAuthorisedRoute("punishments", token)) as UserPunishments[];
+  return response;
+}
+
+export async function getUserProfile(token: string) {
+  const response = (await getAuthorisedRoute("profile", token)) as UserProfile;
   return response;
 }

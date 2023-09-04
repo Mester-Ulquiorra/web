@@ -1,9 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getUserData } from "../scripts/userData";
+import { getUserData, getUserProfile } from "../scripts/userData";
 
 const token = Astro.cookies.get("token");
 const userData = token ? await getUserData(token.value) : null;
+const userProfile = token ? await getUserProfile(token.value) : null;
+
+const firstJoin = new Date(userProfile?.firstJoin ?? 0);
+const lastJoin = new Date(userProfile?.lastJoin ?? 0);
 
 // if (!token) {
 //     return Astro.redirect("/login");
@@ -20,11 +24,33 @@ const userData = token ? await getUserData(token.value) : null;
         />
       )
     }
-    <h2>{userData?.userTag}</h2>
-
-    <!-- Remove these -->
-    <img src="https://picsum.photos/seed/phirkabhi/256" alt="PHIR KABHI" />
-    <h1>noClaps</h1>
+    <h1>{userData?.userTag}</h1>
+    <h2>Level: <span id="level">{userProfile?.level}</span></h2>
+    <h2>Current XP: <span id="xp">{userProfile?.xp}</span></h2>
+    <div>
+      <section>
+        <h3>Leaderboard position</h3>
+        <p>#<span>{userProfile?.lbPos}</span></p>
+      </section>
+      <section>
+        <h3>First log in:</h3>
+        <p>
+          <time datetime={firstJoin.toISOString()}
+            >{firstJoin.toDateString()}</time
+          >
+        </p>
+        <h3>Last log in:</h3>
+        <p>
+          <time datetime={lastJoin.toISOString()}
+            >{lastJoin.toDateString()}</time
+          >
+        </p>
+      </section>
+      <section>
+        <h3>Moderator level</h3>
+        <p>{userProfile?.mod}</p>
+      </section>
+    </div>
   </main>
 </BaseLayout>
 
@@ -39,5 +65,13 @@ const userData = token ? await getUserData(token.value) : null;
   img {
     width: 25vmin;
     border-radius: calc(var(--border-radius) * 4);
+  }
+
+  div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-rows: min-content;
+    width: 100%;
+    place-items: center;
   }
 </style>
