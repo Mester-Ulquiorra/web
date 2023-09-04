@@ -23,11 +23,11 @@ export type APIRouteType = keyof typeof APIRoutes;
 /**
  * The punishment types, the <const> was added before the array for better TypeScript autocompletion
  */
-export const PunishmentTypes = <const>["Warning", "Mute", "Kick", "Ban"];
+export const PunishmentTypes = <const> ["Warning", "Mute", "Kick", "Ban"];
 /**
  * The punishment types formatted to be used in English sentences (example: you've been muted)
  */
-export const FormattedPunishmentTypes = <const>["warned", "muted", "kicked", "banned"];
+export const FormattedPunishmentTypes = <const> ["warned", "muted", "kicked", "banned"];
 
 /**
  * Gets the full API route with the base

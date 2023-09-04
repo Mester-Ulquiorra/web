@@ -17,6 +17,7 @@ const logoutRoute = getAPIRoute("logout");
 <user-profile>
   <UserInfo {userId} {userTag} {avatar} />
   <menu>
+    <a href="/profile">Profile</a>
     <ServerLink />
     <form action={logoutRoute}>
       <button type="submit">Log out</button>
@@ -31,6 +32,18 @@ const logoutRoute = getAPIRoute("logout");
     position: relative;
     cursor: pointer;
     z-index: 4;
+  }
+
+  a {
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
   }
 
   button {
