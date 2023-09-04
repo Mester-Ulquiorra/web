@@ -13,7 +13,7 @@ The frontend of the Ulquiorra UCP (User Control Panel). This does not contain th
     npm run dev
     ```
 
-    This will start a development server that you can view by opening `localhost:3000` in your browser.
+    This will start a development server that you can view by opening `localhost:4321` in your browser.
 
 3.  ```sh
     npm run build

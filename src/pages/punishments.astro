@@ -3,9 +3,9 @@ import Punishment from "../components/punishments/Punishment.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getUserPunishments } from "../scripts/userData";
 
-const token = Astro.cookies.get("token").value;
+const token = Astro.cookies.get("token");
 
-const userPunishments = token ? await getUserPunishments(token) : null;
+const userPunishments = token ? await getUserPunishments(token.value) : null;
 
 if (!token) {
   return Astro.redirect("/login");

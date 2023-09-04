@@ -2,8 +2,8 @@
 import { Icon } from "astro-icon";
 import { getUserData } from "../../scripts/userData";
 
-const token = Astro.cookies.get("token").value;
-const userData = token ? await getUserData(token) : null;
+const token = Astro.cookies.get("token");
+const userData = token ? await getUserData(token.value) : null;
 ---
 
 <nav>
@@ -75,7 +75,7 @@ const userData = token ? await getUserData(token) : null;
 
 <script>
   const currentLocation = document.querySelector(
-    `a[href="${location.pathname}"]`
+    `a[href="${location.pathname}"]`,
   ) as HTMLAnchorElement;
 
   if (currentLocation) {

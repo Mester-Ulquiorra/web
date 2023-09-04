@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getAPIRoute } from "../scripts/api";
 
-const token = Astro.cookies.get("token").value ?? "";
+const token = Astro.cookies.get("token");
 const appealApiRoute = getAPIRoute("createAppeal");
 
 if (!token) {
@@ -12,7 +12,7 @@ if (!token) {
 
 <BaseLayout title="Appeal">
   <main>
-    <form id="appeal" action={appealApiRoute} data-token={token}>
+    <form id="appeal" action={appealApiRoute} data-token={token.value}>
       <label for="punishmentId">Punishment ID</label>
       <input name="punishmentId" type="text" id="punishmentId" />
       <label for="reason">Reason</label>
@@ -80,7 +80,7 @@ if (!token) {
 <script>
   const id = sessionStorage.getItem("id") ?? "";
   const punishmentIdInput = document.getElementById(
-    "punishmentId"
+    "punishmentId",
   ) as HTMLInputElement;
   punishmentIdInput.value = id;
 
@@ -112,7 +112,7 @@ if (!token) {
           $toastText.set("Error: Something went wrong");
           throw new Error("Network response was not ok");
         }
-        
+
         $toastText.set("Success! Your appeal has been sent");
         setTimeout(() => {
           location.replace("/punishments");

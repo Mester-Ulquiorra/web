@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const token = Astro.cookies.get("token").value;
+const token = Astro.cookies.get("token");
 
 if (!token) {
   return Astro.redirect("/login");

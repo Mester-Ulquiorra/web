@@ -2,8 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getUserData } from "../scripts/userData";
 
-const token = Astro.cookies.get("token").value;
-const userData = token ? await getUserData(token) : null;
+const token = Astro.cookies.get("token");
+const userData = token ? await getUserData(token.value) : null;
 
 // if (!token) {
 //     return Astro.redirect("/login");
@@ -23,21 +23,21 @@ const userData = token ? await getUserData(token) : null;
     <h2>{userData?.userTag}</h2>
 
     <!-- Remove these -->
-    <img src="https://picsum.photos/seed/phirkabhi/256" alt="PHIR KABHI">
+    <img src="https://picsum.photos/seed/phirkabhi/256" alt="PHIR KABHI" />
     <h1>noClaps</h1>
   </main>
 </BaseLayout>
 
 <style lang="scss">
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 
-    img {
-        width: 25vmin;
-        border-radius: calc(var(--border-radius) * 4);
-    }
+  img {
+    width: 25vmin;
+    border-radius: calc(var(--border-radius) * 4);
+  }
 </style>
