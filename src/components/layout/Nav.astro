@@ -3,7 +3,7 @@ import { Icon } from "astro-icon";
 import { getUserData } from "../../scripts/userData";
 
 const token = Astro.cookies.get("token");
-const userData = token?.value ? await getUserData(token.value) : null;
+const userData = token ? await getUserData(token.value) : null;
 ---
 
 <nav>
