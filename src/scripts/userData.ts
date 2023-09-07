@@ -1,5 +1,5 @@
 import type { Alert, AlertType } from "./alerts";
-import { getAPIRoute, APIRouteType } from "./api";
+import { getAPIRoute, type APIRouteType } from "./api";
 
 interface UserData {
   userId: string;
@@ -53,16 +53,13 @@ async function getAuthorisedRoute(route: APIRouteType, token: string) {
 }
 
 export async function getUserData(token: string) {
-  const userData = (await getAuthorisedRoute("user", token)) as UserData;
-  return userData;
+  return (await getAuthorisedRoute("user", token)) as UserData;
 }
 
 export async function getUserPunishments(token: string) {
-  const response = (await getAuthorisedRoute("punishments", token)) as UserPunishments[];
-  return response;
+  return (await getAuthorisedRoute("punishments", token)) as UserPunishments[];
 }
 
 export async function getUserProfile(token: string) {
-  const response = (await getAuthorisedRoute("profile", token)) as UserProfile;
-  return response;
+  return (await getAuthorisedRoute("profile", token)) as UserProfile;
 }

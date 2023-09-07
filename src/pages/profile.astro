@@ -3,8 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getUserData, getUserProfile } from "../scripts/userData";
 
 const token = Astro.cookies.get("token");
-const userData = token ? await getUserData(token.value) : null;
-const userProfile = token ? await getUserProfile(token.value) : null;
+const userData = token?.value ? await getUserData(token.value) : null;
+const userProfile = token?.value ? await getUserProfile(token.value) : null;
 
 const firstJoin = new Date(userProfile?.firstJoin ?? 0);
 const lastJoin = new Date(userProfile?.lastJoin ?? 0);
