@@ -5,7 +5,7 @@ export const $toastText = atom("");
 $toastText.listen((text) => {
   if (text === "") return;
 
-  const toast = document.querySelector(".toast") as HTMLDivElement;
+  const toast = document.querySelector<HTMLDivElement>(".toast")!;
   toast.innerHTML = text;
 
   toast.style.visibility = "visible";

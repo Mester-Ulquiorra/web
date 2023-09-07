@@ -95,8 +95,8 @@ const logoutRoute = getAPIRoute("logout");
   class UserProfile extends HTMLElement {
     constructor() {
       super();
-      const menu = this.querySelector("menu") as HTMLMenuElement;
-      const userInfo = this.querySelector("div") as HTMLDivElement;
+      const menu = this.querySelector("menu")!;
+      const userInfo = this.querySelector("div")!;
 
       if (window.matchMedia("(max-width:768px)").matches) {
         document.addEventListener("click", (e) => {

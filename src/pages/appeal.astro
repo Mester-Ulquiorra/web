@@ -79,9 +79,8 @@ if (!token) {
 
 <script>
   const id = sessionStorage.getItem("id") ?? "";
-  const punishmentIdInput = document.getElementById(
-    "punishmentId",
-  ) as HTMLInputElement;
+  const punishmentIdInput =
+    document.querySelector<HTMLInputElement>("#punishmentId")!;
   punishmentIdInput.value = id;
 
   sessionStorage.clear();
@@ -90,7 +89,7 @@ if (!token) {
 <script>
   import { $toastText } from "../scripts/stores";
 
-  const form = document.getElementById("appeal") as HTMLFormElement;
+  const form = document.querySelector<HTMLFormElement>("#appeal")!;
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(form);

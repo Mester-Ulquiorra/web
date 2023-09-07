@@ -58,7 +58,7 @@ const { title } = Astro.props;
   // setup the websocket responsible for polling real-time data only when we're not already on the alerts page
   if (location.pathname !== "/alerts") {
     // get the nav element
-    const header = document.querySelector("header") as HTMLElement;
+    const header = document.querySelector("header")!;
     const wsRoute = header.dataset.wsroute;
     const token = header.dataset.token;
 

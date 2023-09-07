@@ -74,9 +74,9 @@ const userData = token ? await getUserData(token.value) : null;
 </style>
 
 <script>
-  const currentLocation = document.querySelector(
+  const currentLocation = document.querySelector<HTMLAnchorElement>(
     `a[href="${location.pathname}"]`,
-  ) as HTMLAnchorElement;
+  );
 
   if (currentLocation) {
     currentLocation.style.backgroundColor = "var(--primary)";
@@ -86,6 +86,6 @@ const userData = token ? await getUserData(token.value) : null;
 
 <script>
   if (location.pathname === "/alerts") {
-    document.getElementById("unread")?.remove();
+    document.querySelector("#unread")?.remove();
   }
 </script>
