@@ -6,11 +6,11 @@ const token = Astro.cookies.get("token");
 const userData = token?.value ? await getUserData(token.value) : null;
 const userProfile = token?.value ? await getUserProfile(token.value) : null;
 
-const firstJoin = new Date(userProfile?.firstJoin ?? 0);
-const lastJoin = new Date(userProfile?.lastJoin ?? 0);
+const firstJoin = new Date((userProfile?.firstJoin ?? 0) * 1000);
+const lastJoin = new Date((userProfile?.lastJoin ?? 0) * 1000);
 
 if (!token) {
-    return Astro.redirect("/login");
+  return Astro.redirect("/login");
 }
 ---
 
