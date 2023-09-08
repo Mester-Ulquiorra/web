@@ -23,7 +23,7 @@ export interface UserPunishments {
 interface UserProfile {
   firstJoin: number;
   lastJoin: number;
-  mod: string;
+  mod: number;
   xp: number;
   lbPos: number;
   level: number;

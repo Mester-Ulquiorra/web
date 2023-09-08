@@ -9,6 +9,17 @@ const userProfile = token?.value ? await getUserProfile(token.value) : null;
 const firstJoin = new Date((userProfile?.firstJoin ?? 0) * 1000);
 const lastJoin = new Date((userProfile?.lastJoin ?? 0) * 1000);
 
+const modLevels: { [key: number]: string } = {
+  "-1": "Test mod",
+  0: "No mod",
+  1: "Mod (Level 1)",
+  2: "Mod (Level 2)",
+  3: "Mod (Level 3)",
+  4: "Head mod",
+  5: "Admin",
+  6: "Owner",
+};
+
 if (!token) {
   return Astro.redirect("/login");
 }
@@ -48,7 +59,7 @@ if (!token) {
       </section>
       <section>
         <h3>Moderator level</h3>
-        <p>{userProfile?.mod}</p>
+        <p>{modLevels[userProfile?.mod ?? 0]}</p>
       </section>
     </div>
   </main>
