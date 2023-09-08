@@ -79,7 +79,7 @@ const userData = token?.value ? await getUserData(token.value) : null;
       super();
 
       const currentLocation = this.querySelector<HTMLAnchorElement>(
-        `a[href="${location.pathname}]`,
+        `a[href="${location.pathname}"]`,
       );
 
       if (currentLocation) {
