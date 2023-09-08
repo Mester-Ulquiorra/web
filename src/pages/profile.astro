@@ -9,9 +9,9 @@ const userProfile = token?.value ? await getUserProfile(token.value) : null;
 const firstJoin = new Date(userProfile?.firstJoin ?? 0);
 const lastJoin = new Date(userProfile?.lastJoin ?? 0);
 
-// if (!token) {
-//     return Astro.redirect("/login");
-// }
+if (!token) {
+    return Astro.redirect("/login");
+}
 ---
 
 <BaseLayout title="Profile">
