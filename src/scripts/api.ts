@@ -16,6 +16,7 @@ const APIRoutes = {
   createAppeal: "/user/create-appeal",
   logout: "/user/logout",
   ws: "/ws",
+  profile: "/user/profile",
 };
 
 export type APIRouteType = keyof typeof APIRoutes;

@@ -1,24 +1,36 @@
 ---
-import Icons from "../Icons.astro";
+import { Icon } from "astro-icon";
 import { getUserData } from "../../scripts/userData";
 
-const token = Astro.cookies.get("token").value;
-const userData = token ? await getUserData(token) : null;
+const token = Astro.cookies.get("token");
+const userData = token?.value ? await getUserData(token.value) : null;
 ---
 
 <nav>
-  <a href="/"><Icons name="home" /> Home</a>
-  <a href="/punishments"><Icons name="hammer" /> Punishments</a>
+  <a href="/"><Icon name="mdi:home" /> Home</a>
+  <a href="/punishments"><Icon name="mdi:hammer" /> Punishments</a>
   <a href="/alerts"
-    ><Icons name="bell" />Alerts<span id="unread"
+    ><Icon name="mdi:bell" />Alerts<span id="unread"
       >{userData?.alerts.length}</span
     ></a
+  >
+  <a href="/profile"
+    >{
+      userData?.avatar ? (
+        <img
+          src={`https://media.discordapp.net/avatars/${userData.userId}/${userData.avatar}.png`}
+          alt={userData.userTag}
+        />
+      ) : (
+        <Icon name="mdi:account" />
+      )
+    } Profile</a
   >
 </nav>
 
 <style lang="scss">
   nav {
-    padding: 1rem;;
+    padding: 1rem;
     display: grid;
     grid-auto-rows: min-content;
     align-items: center;
@@ -55,12 +67,16 @@ const userData = token ? await getUserData(token) : null;
     right: 2rem;
     top: 0.5rem;
   }
+
+  [astro-icon] {
+    height: 1.5rem;
+  }
 </style>
 
 <script>
-  const currentLocation = document.querySelector(
-    `a[href="${location.pathname}"]`
-  ) as HTMLAnchorElement;
+  const currentLocation = document.querySelector<HTMLAnchorElement>(
+    `a[href="${location.pathname}"]`,
+  );
 
   if (currentLocation) {
     currentLocation.style.backgroundColor = "var(--primary)";
@@ -70,6 +86,6 @@ const userData = token ? await getUserData(token) : null;
 
 <script>
   if (location.pathname === "/alerts") {
-    document.getElementById("unread")?.remove();
+    document.querySelector("#unread")?.remove();
   }
 </script>

@@ -21,3 +21,6 @@ pnpm-debug.log*
 .DS_Store
 
 .vscode
+
+bun.lockb
+package-lock.json

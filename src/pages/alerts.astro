@@ -6,7 +6,7 @@ const alertsRoute = getAPIRoute("ws");
 
 import "../styles/alerts.scss";
 
-const token = Astro.cookies.get("token").value ?? "";
+const token = Astro.cookies.get("token");
 
 if (!token) {
   return Astro.redirect("/login");
@@ -30,13 +30,13 @@ if (!token) {
   import type { Alert, AlertType } from "../scripts/alerts";
   import { createAlert } from "../scripts/alerts";
 
-  const alertsMainElem = document.getElementById("alerts") as HTMLElement;
+  const alertsMainElem = document.querySelector<HTMLElement>("#alerts")!;
   const alertsRoute = alertsMainElem.dataset.route as string;
 
   const ws = new WebSocket(alertsRoute);
 
   const alertHistory = JSON.parse(
-    localStorage.getItem("alertHistory") ?? "[]"
+    localStorage.getItem("alertHistory") ?? "[]",
   ) as Alert<AlertType>[];
 
   if (alertHistory.length > 0) {

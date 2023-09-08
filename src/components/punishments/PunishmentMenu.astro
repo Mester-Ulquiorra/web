@@ -1,5 +1,5 @@
 ---
-import Icons from "../Icons.astro";
+import { Icon } from "astro-icon";
 import AppealButton from "./AppealButton.astro";
 import CopyPunishmentId from "./CopyPunishmentId.astro";
 
@@ -13,7 +13,7 @@ const { id, active, appealed } = Astro.props;
 ---
 
 <punishment-menu data-id={id}>
-  <Icons name="menu" />
+  <Icon name="mdi:dots-horizontal" />
   <menu>
     <CopyPunishmentId {id} />
     {active && !appealed && <AppealButton {id} />}
@@ -49,6 +49,10 @@ const { id, active, appealed } = Astro.props;
       visibility: visible;
       opacity: 1;
     }
+  }
+
+  [astro-icon] {
+    height: 1rem;
   }
 </style>
 

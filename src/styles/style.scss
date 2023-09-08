@@ -51,3 +51,8 @@ button {
 ::-webkit-scrollbar-corner {
     background-color: var(--bg);
 }
+
+[astro-icon] {
+    place-self: center;
+    fill: currentColor;
+}

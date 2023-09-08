@@ -5,9 +5,9 @@ export type AlertType = "appeal" | "punishment";
 
 type AlertData<T extends AlertType> = T extends "appeal"
   ? {
-      status: "accepted" | "rejected";
-      reason: string;
-    }
+    status: "accepted" | "rejected";
+    reason: string;
+  }
   : T extends "punishment"
   ? UserPunishments
   : never;
@@ -26,11 +26,10 @@ export function createAlert(alert: Alert<AlertType>, alertsMainElem: HTMLElement
     alertElement.dataset.active = String(alert.data.active);
   }
 
-  alertElement.innerHTML = `<h3>Type: ${capitalise(alert.type)}</h3><p>${
-    isAppealAlert(alert)
-      ? `Your appeal has been ${alert.data.status}: `
-      : ""
-  }</p><p>Reason: ${alert.data.reason}</p>`;
+  alertElement.innerHTML = `<h3>Type: ${ capitalise(alert.type) }</h3><p>${ isAppealAlert(alert)
+    ? `Your appeal has been ${ alert.data.status }: `
+    : ""
+    }</p><p>Reason: ${ alert.data.reason }</p>`;
 
   alertsMainElem.prepend(alertElement);
 }

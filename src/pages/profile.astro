@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getUserData, getUserProfile } from "../scripts/userData";
+
+const token = Astro.cookies.get("token");
+const userData = token?.value ? await getUserData(token.value) : null;
+const userProfile = token?.value ? await getUserProfile(token.value) : null;
+
+const firstJoin = new Date(userProfile?.firstJoin ?? 0);
+const lastJoin = new Date(userProfile?.lastJoin ?? 0);
+
+if (!token) {
+    return Astro.redirect("/login");
+}
+---
+
+<BaseLayout title="Profile">
+  <main>
+    {
+      userData?.avatar && (
+        <img
+          src={`https://media.discordapp.net/avatars/${userData.userId}/${userData.avatar}.png`}
+          alt={userData.userTag}
+        />
+      )
+    }
+    <h1>{userData?.userTag}</h1>
+    <h2>Level: <span id="level">{userProfile?.level}</span></h2>
+    <h2>Current XP: <span id="xp">{userProfile?.xp}</span></h2>
+    <div>
+      <section>
+        <h3>Leaderboard position</h3>
+        <p>#<span>{userProfile?.lbPos}</span></p>
+      </section>
+      <section>
+        <h3>First log in:</h3>
+        <p>
+          <time datetime={firstJoin.toISOString()}
+            >{firstJoin.toDateString()}</time
+          >
+        </p>
+        <h3>Last log in:</h3>
+        <p>
+          <time datetime={lastJoin.toISOString()}
+            >{lastJoin.toDateString()}</time
+          >
+        </p>
+      </section>
+      <section>
+        <h3>Moderator level</h3>
+        <p>{userProfile?.mod}</p>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  img {
+    width: 25vmin;
+    border-radius: calc(var(--border-radius) * 4);
+  }
+
+  div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-rows: min-content;
+    width: 100%;
+    place-items: center;
+  }
+</style>
