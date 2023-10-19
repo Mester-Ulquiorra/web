@@ -10,14 +10,15 @@
     "preview": "wrangler pages dev ./dist"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^7.5.1",
-    "astro": "^3.2.3",
+    "@astrojs/cloudflare": "^7.6.1",
+    "astro": "^3.3.2",
     "astro-icon": "^0.8.1",
-    "nanostores": "^0.9.3",
-    "sass": "^1.69.0"
+    "nanostores": "^0.9.4",
+    "sass": "^1.69.4"
   },
   "devDependencies": {
-    "@types/node": "^20.8.3",
-    "wrangler": "^3.11.0"
-  }
+    "@types/node": "^20.8.7",
+    "wrangler": "^3.14.0"
+  },
+  "pkgx": "node@18 pnpm"
 }
