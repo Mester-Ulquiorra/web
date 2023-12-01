@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
@@ -6,7 +6,6 @@ export default defineConfig({
   site: "https://ucp.mester.info",
   output: "server",
   adapter: cloudflare(),
-  image: { service: { entrypoint: "astro/assets/services/noop" } },
   vite: {
     resolve: {
       alias: {
@@ -14,4 +13,5 @@ export default defineConfig({
       }
     }
   }
+  image: { service: passthroughImageService() }
 });
