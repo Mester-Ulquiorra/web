@@ -6,11 +6,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "astro": "astro",
-    "preview": "wrangler pages dev ./dist"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^7.7.1",
+    "@astrojs/netlify": "^3.0.4",
     "@iconify-json/logos": "^1.1.40",
     "@iconify-json/mdi": "^1.1.57",
     "astro": "^3.6.4",
@@ -18,7 +17,6 @@
     "sass": "^1.69.5"
   },
   "devDependencies": {
-    "@types/node": "^20.10.1",
-    "wrangler": "^3.18.0"
+    "@types/node": "^20.10.1"
   }
 }
