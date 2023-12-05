@@ -1,5 +1,8 @@
 # build output
 dist/
+functions/
+.netlify/
+
 # generated types
 .astro/
 
@@ -21,3 +24,4 @@ pnpm-debug.log*
 .DS_Store
 
 .vscode
+.vercel

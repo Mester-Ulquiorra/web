@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import Icon from "../Icon.astro";
 import AppealButton from "./AppealButton.astro";
 import CopyPunishmentId from "./CopyPunishmentId.astro";
 
@@ -13,7 +13,7 @@ const { id, active, appealed } = Astro.props;
 ---
 
 <punishment-menu data-id={id}>
-  <Icon name="mdi:dots-horizontal" />
+  <Icon set="mdi" name="dots-horizontal" />
   <menu>
     <CopyPunishmentId {id} />
     {active && !appealed && <AppealButton {id} />}
@@ -50,10 +50,6 @@ const { id, active, appealed } = Astro.props;
       opacity: 1;
     }
   }
-
-  [astro-icon] {
-    height: 1rem;
-  }
 </style>
 
 <script>
@@ -67,7 +63,7 @@ const { id, active, appealed } = Astro.props;
       document.addEventListener("click", (e) => {
         if (
           (e.target as HTMLElement).closest(
-            `punishment-menu[data-id="${id}"]`
+            `punishment-menu[data-id="${id}"]`,
           ) &&
           !menu?.hasAttribute("open")
         ) {

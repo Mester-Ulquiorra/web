@@ -1,12 +1,12 @@
 ---
 import { getAPIRoute } from "../scripts/api";
-import { Icon } from "astro-icon";
+import Icon from "../components/Icon.astro";
 
 const loginRoute = getAPIRoute("auth");
 ---
 
 <form action={loginRoute}>
-  <button type="submit">Login to <Icon name="logos:discord" /></button>
+  <button type="submit">Login to <Icon set="logos" name="discord" /></button>
 </form>
 
 <style lang="scss">
@@ -29,14 +29,6 @@ const loginRoute = getAPIRoute("auth");
     &::selection {
       background-color: var(--secondary);
       color: var(--on-secondary);
-    }
-  }
-
-  [astro-icon] {
-    height: 1.5rem;
-
-    & :global(path) {
-      fill: unset;
     }
   }
 </style>

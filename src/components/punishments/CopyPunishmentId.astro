@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import Icon from "../Icon.astro";
 
 interface Props {
   id: string;
@@ -9,7 +9,7 @@ const { id } = Astro.props;
 ---
 
 <copy-punishment-id type="button" data-id={id}
-  ><Icon name="mdi:content-copy" /> Copy Punishment ID</copy-punishment-id
+  ><Icon set="mdi" name="content-copy" /> Copy Punishment ID</copy-punishment-id
 >
 
 <style lang="scss">
@@ -25,10 +25,6 @@ const { id } = Astro.props;
       background-color: var(--primary);
       color: var(--on-primary);
     }
-  }
-
-  [astro-icon] {
-    height: 1rem;
   }
 </style>
 
