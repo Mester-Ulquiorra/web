@@ -1,0 +1,59 @@
+---
+import { icons as logos } from "@iconify-json/logos";
+import { icons as mdi } from "@iconify-json/mdi";
+
+interface Props {
+    set: "logos" | "mdi";
+    name: string;
+}
+
+const { set, name } = Astro.props;
+---
+
+{
+    set === "logos" && (
+        <svg
+            viewBox={`0 0 ${logos.icons[name].width} ${logos.icons[name].height}`}
+            set:html={logos.icons[name].body}
+            class={`logos-${name}`}
+        />
+    )
+}
+
+{
+    set === "mdi" && (
+        <svg
+            viewBox="0 0 24 24"
+            set:html={mdi.icons[name].body}
+            class={`mdi-${name}`}
+        />
+    )
+}
+
+<style>
+    svg {
+        place-self: center;
+        fill: currentColor;
+    }
+
+    .logos-discord {
+        height: 1.5rem;
+
+        & :global(path) {
+            fill: unset;
+        }
+    }
+
+    .mdi-home,
+    .mdi-hammer,
+    .mdi-bell,
+    .mdi-account {
+        height: 1.5rem;
+    }
+
+    .mdi-gavel,
+    .mdi-content-copy,
+    .mdi-dots-horizontal {
+        height: 1rem;
+    }
+</style>
