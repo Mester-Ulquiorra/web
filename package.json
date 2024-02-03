@@ -9,14 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^6.0.0",
-    "@iconify-json/logos": "^1.1.40",
-    "@iconify-json/mdi": "^1.1.58",
-    "astro": "^4.0.1",
-    "nanostores": "^0.9.5",
-    "sass": "^1.69.5"
-  },
-  "devDependencies": {
-    "@types/node": "^20.10.3"
+    "@astrojs/vercel": "^7.1.1",
+    "@iconify-json/logos": "^1.1.42",
+    "@iconify-json/mdi": "^1.1.64",
+    "@types/node": "^20.11.6",
+    "astro": "^4.3.2",
+    "nanostores": "^0.9.5"
   }
 }

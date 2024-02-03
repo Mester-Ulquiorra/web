@@ -1,7 +1,7 @@
 ---
 import Head from "../components/layout/Head.astro";
 
-import "../styles/style.scss";
+import "../styles/style.css";
 
 interface Props {
   title: string;
@@ -17,7 +17,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <slot />
-    <style lang="scss">
+    <style>
       body {
         display: flex;
         flex-direction: column;

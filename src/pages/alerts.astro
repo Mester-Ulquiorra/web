@@ -4,7 +4,7 @@ import { getAPIRoute } from "../scripts/api";
 
 const alertsRoute = getAPIRoute("ws");
 
-import "../styles/alerts.scss";
+import "../styles/alerts.css";
 
 const token = Astro.cookies.get("token");
 
@@ -17,7 +17,7 @@ if (!token) {
   <main id="alerts" data-route={alertsRoute}></main>
 </BaseLayout>
 
-<style lang="scss">
+<style>
   main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
