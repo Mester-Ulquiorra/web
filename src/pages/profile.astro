@@ -10,88 +10,103 @@ const firstJoin = new Date((userProfile?.firstJoin ?? 0) * 1000);
 const lastJoin = new Date((userProfile?.lastJoin ?? 0) * 1000);
 
 const modLevels: { [key: number]: string } = {
-  "-1": "Test mod",
-  0: "No mod",
-  1: "Mod (Level 1)",
-  2: "Mod (Level 2)",
-  3: "Mod (Level 3)",
-  4: "Head mod",
-  5: "Admin",
-  6: "Owner",
+    "-1": "Test mod",
+    0: "No mod",
+    1: "Mod (Level 1)",
+    2: "Mod (Level 2)",
+    3: "Mod (Level 3)",
+    4: "Head mod",
+    5: "Admin",
+    6: "Owner",
 };
 
 if (!token) {
-  return Astro.redirect("/login");
+    return Astro.redirect("/login");
 }
 ---
 
 <BaseLayout title="Profile">
-  <main>
-    {
-      userData?.avatar && (
-        <img
-          src={`https://media.discordapp.net/avatars/${userData.userId}/${userData.avatar}.png`}
-          alt={userData.userTag}
-        />
-      )
-    }
-    <h1>{userData?.userTag}</h1>
-    <h2>Level: <span id="level">{userProfile?.level}</span></h2>
-    <h2>Current XP: <span id="xp">{userProfile?.xp}</span></h2>
-    <div>
-      <section>
-        <h3>Leaderboard position</h3>
-        <p>#<span>{userProfile?.lbPos}</span></p>
-      </section>
-      <section>
-        <h3>First join:</h3>
-        <p>
-          <time datetime={firstJoin.toISOString()}
-            >{firstJoin.toDateString()}</time
-          >
-        </p>
-        <h3>Last join:</h3>
-        <p>
-          <time datetime={lastJoin.toISOString()}
-            >{lastJoin.toDateString()}</time
-          >
-        </p>
-      </section>
-      <section>
-        <h3>Moderator level</h3>
-        <p>{modLevels[userProfile?.mod ?? 0]}</p>
-      </section>
-    </div>
-  </main>
+    <main>
+        {
+            userData?.avatar && (
+                <img
+                    src={`https://media.discordapp.net/avatars/${userData.userId}/${userData.avatar}.png`}
+                    alt={userData.userTag}
+                />
+            )
+        }
+        <h1>{userData?.userTag}</h1>
+        <h2>Level: <span id="level">{userProfile?.level}</span></h2>
+        <h2>Current XP: <span id="xp">{userProfile?.xp}</span></h2>
+        <div>
+            <section>
+                <h3>Leaderboard position</h3>
+                <p>#<span>{userProfile?.lbPos}</span></p>
+            </section>
+            <section>
+                {
+                    firstJoin === lastJoin ? (
+                        <>
+                            <h3>Joined at:</h3>
+                            <p>
+                                <time datetime={firstJoin.toISOString()}>
+                                    {firstJoin.toDateString()}
+                                </time>
+                            </p>
+                        </>
+                    ) : (
+                        <>
+                            <h3>First join:</h3>
+                            <p>
+                                <time datetime={firstJoin.toISOString()}>
+                                    {firstJoin.toDateString()}
+                                </time>
+                            </p>
+                            <h3>Last join:</h3>
+                            <p>
+                                <time datetime={lastJoin.toISOString()}>
+                                    {lastJoin.toDateString()}
+                                </time>
+                            </p>
+                        </>
+                    )
+                }
+            </section>
+            <section>
+                <h3>Moderator level</h3>
+                <p>{modLevels[userProfile?.mod ?? 0]}</p>
+            </section>
+        </div>
+    </main>
 </BaseLayout>
 
 <style>
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 
-  img {
-    width: 25vmin;
-    border-radius: calc(var(--border-radius) * 4);
-  }
+    img {
+        width: 25vmin;
+        border-radius: calc(var(--border-radius) * 4);
+    }
 
-  div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    grid-template-rows: min-content;
-    width: 100%;
-    place-items: center;
-    gap: 2rem;
-  }
+    div {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        grid-template-rows: min-content;
+        width: 100%;
+        place-items: center;
+        gap: 2rem;
+    }
 
-  section {
-    border: var(--border);
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--border-radius);
-  }
+    section {
+        border: var(--border);
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--border-radius);
+    }
 </style>
