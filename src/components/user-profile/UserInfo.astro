@@ -1,54 +1,54 @@
 ---
 interface Props {
-  avatar: string;
-  userId: string;
-  userTag: string;
+    avatar: string;
+    userId: string;
+    userTag: string;
 }
 
 const { avatar, userId, userTag } = Astro.props;
 ---
 
 <div>
-  {
-    avatar && (
-      <img
-        src={`https://media.discordapp.net/avatars/${userId}/${avatar}.png`}
-        alt="User avatar"
-      />
-    )
-  }
+    {
+        avatar && (
+            <img
+                src={`https://media.discordapp.net/avatars/${userId}/${avatar}.png?size=512`}
+                alt="User avatar"
+            />
+        )
+    }
 
-  <p>{userTag}</p>
+    <p>{userTag}</p>
 </div>
 
 <style>
-  div {
-    display: inline-flex;
-    gap: 0.5rem;
-    position: relative;
-    cursor: pointer;
-    z-index: 4;
-    padding: 0.5rem;
-    border-radius: calc(var(--border-radius) * 1.5)
-      calc(var(--border-radius) * 1.5) 0 0;
-    border: var(--border);
-    border-color: transparent;
-    border-bottom: none;
-    transition: var(--transition);
-  }
+    div {
+        display: inline-flex;
+        gap: 0.5rem;
+        position: relative;
+        cursor: pointer;
+        z-index: 4;
+        padding: 0.5rem;
+        border-radius: calc(var(--border-radius) * 1.5)
+            calc(var(--border-radius) * 1.5) 0 0;
+        border: var(--border);
+        border-color: transparent;
+        border-bottom: none;
+        transition: var(--transition);
+    }
 
-  img {
-    height: 1.75rem;
-    border-radius: 100vmax;
-  }
+    img {
+        height: 1.75rem;
+        border-radius: 100vmax;
+    }
 
-  p {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
+    p {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
 
-  img,
-  p {
-    place-self: center;
-  }
+    img,
+    p {
+        place-self: center;
+    }
 </style>
