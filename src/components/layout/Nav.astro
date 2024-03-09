@@ -14,18 +14,6 @@ const userData = token?.value ? await getUserData(token.value) : null;
             >{userData?.alerts.length}</span
         ></a
     >
-    <a href="/profile"
-        >{
-            userData?.avatar ? (
-                <img
-                    src={`https://media.discordapp.net/avatars/${userData.userId}/${userData.avatar}.png`}
-                    alt={userData.userTag}
-                />
-            ) : (
-                <Icon set="mdi" name="account" />
-            )
-        } Profile</a
-    >
 </nav-menu>
 
 <style>
