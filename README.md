@@ -11,7 +11,9 @@ The frontend of the Ulquiorra UCP (User Control Panel). This does not contain th
    cd web
    ```
 
-2. ```sh
+2. Start the development server.
+
+   ```sh
    bun install
    bun dev
    ```
