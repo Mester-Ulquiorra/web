@@ -1,19 +1,22 @@
 {
-  "name": "ulquiorra-gui",
+  "name": "ucp",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "astro": "astro"
+    "dev": "bun css && bun start",
+    "css": "bunx unocss src/**/*.tsx --preflights false -mo public/uno.css",
+    "start": "bun main.ts --watch",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.8",
+    "typescript": "^5.4.2"
   },
   "dependencies": {
-    "@astrojs/vercel": "^7.3.5",
-    "@iconify-json/logos": "^1.1.42",
-    "@iconify-json/mdi": "^1.1.64",
-    "@types/node": "^20.11.25",
-    "astro": "^4.4.15",
-    "nanostores": "^0.9.5"
+    "@elysiajs/html": "^1.0.2",
+    "@elysiajs/static": "^1.0.2",
+    "@kitajs/html": "^3.1.2",
+    "@kitajs/ts-html-plugin": "^1.3.4",
+    "@unocss/cli": "^0.58.6",
+    "elysia": "^1.0.3"
   }
 }

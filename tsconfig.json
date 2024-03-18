@@ -1,8 +1,20 @@
 {
-  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "types": [
-      "node"
-    ]
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "jsx": "react",
+    "jsxFactory": "Html.createElement",
+    "jsxFragmentFactory": "Html.Fragment",
+    "plugins": [{ "name": "@kitajs/ts-html-plugin" }],
+    "types": ["@kitajs/html/htmx.d.ts"]
   }
 }

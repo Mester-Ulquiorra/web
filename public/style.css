@@ -6,9 +6,7 @@
     --on-secondary: #00363e;
     --bg: #001f25;
     --text: #a6eeff;
-    --transition: all 0.125s;
     --border: 0.1rem solid var(--text);
-    --border-radius: 0.5rem;
 }
 
 /* Set global values */
@@ -21,15 +19,15 @@
     font-family: ui-monospace, monospace;
 }
 
-main {
-    overflow: auto;
-    padding: 1rem;
-}
-
 a,
 button {
     all: unset;
     cursor: pointer;
+}
+
+svg {
+    place-self: center;
+    fill: currentColor;
 }
 
 ::selection {

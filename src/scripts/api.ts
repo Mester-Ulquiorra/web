@@ -2,7 +2,10 @@
  * There are two development environments: one with a test API (Mester) and one that uses dev frontend with prod API (noClaps)
  * the test API is enabled by checking if there is DEV_MESTER in the environment variables
  */
-const APIBase = process.env.DEV_MESTER === "sure" ? "http://localhost:5657" : "https://ucp-api.mester.info";
+const APIBase =
+  process.env.DEV_MESTER === "sure"
+    ? "http://localhost:5657"
+    : "https://ucp-api.mester.info";
 
 /**
  * The API routes are defined here
@@ -28,7 +31,12 @@ export const PunishmentTypes = <const>["Warning", "Mute", "Kick", "Ban"];
 /**
  * The punishment types formatted to be used in English sentences (example: you've been muted)
  */
-export const FormattedPunishmentTypes = <const>["warned", "muted", "kicked", "banned"];
+export const FormattedPunishmentTypes = <const>[
+  "warned",
+  "muted",
+  "kicked",
+  "banned",
+];
 
 /**
  * Gets the full API route with the base
@@ -38,7 +46,10 @@ export const FormattedPunishmentTypes = <const>["warned", "muted", "kicked", "ba
 export function getAPIRoute(route: APIRouteType) {
   let url = APIBase + APIRoutes[route];
   if (route === "ws") {
-    url = url.replace(/https?/, process.env.DEV_MESTER === "sure" ? "ws" : "wss");
+    url = url.replace(
+      /https?/,
+      process.env.DEV_MESTER === "sure" ? "ws" : "wss",
+    );
   }
   // add a ?test=true at the end if NODE_ENV is development
   if (process.env.NODE_ENV === "development") {
